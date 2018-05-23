@@ -154,7 +154,7 @@ Rectangle {
 //        console.log("insertorupdatecategoryModel:"+keyword);
         for (var i=0; i<tmpcategoryModel.count;i++) {
             var item = tmpcategoryModel.get(i);
-            if (item.keyword == keyword) {
+            if (item.keyword === keyword) {
                 // found, increment
                 item.counter++;
                 return;
@@ -171,18 +171,18 @@ Rectangle {
 //    *     2 => 'Public',
     function pmlContain(pmlitem,searchText) {
         if (typeof(searchText)=='undefined') return true;
-        if (searchText == "") return true;
+        if (searchText === "") return true;
 
         var searchString = "";
         searchString = pmlitem.title+" "+
                 pmlitem.description+" "+
                 pmlitem.username+" "+
                 pmlitem.objects+" "+
-                (pmlitem.access_id == 0 ? "private" : (pmlitem.access_id == -2 ? "friend" : "public")) ;
+                (pmlitem.access_id === 0 ? "private" : (pmlitem.access_id === -2 ? "friend" : "public")) ;
 //        console.log("searchText:**"+searchText+"**");
         var tableau=searchText.toUpperCase().split(" ");
         for (var i=0; i<tableau.length; i++) {
-            if ( (tableau[i]!="") && (searchString.toUpperCase().indexOf(tableau[i])>=0) ) return true;
+            if ( (tableau[i]!=="") && (searchString.toUpperCase().indexOf(tableau[i])>=0) ) return true;
         }
         return false;
     }
@@ -195,17 +195,17 @@ Rectangle {
         for (var i=0; i<refpmlModel.count; i++) {
             var item = refpmlModel.get(i)
 //            console.log("Read: "+item.pmlid+"-"+item.title);
-            if (pmlview.ispublicCloud && (item.ispublic == 0)) continue;
+            if (pmlview.ispublicCloud && (item.ispublic === 0)) continue;
 
             if (item.isdeleted) { isdeletedCount++; continue; }
 
-            if (item.type == "pml" && !typelistModel.get(0).selected) continue;
-            if (item.type == "psk" && !typelistModel.get(1).selected) continue;
-            if (item.type == "pum" && !typelistModel.get(2).selected) continue;
+            if (item.type === "pml" && !typelistModel.get(0).selected) continue;
+            if (item.type === "psk" && !typelistModel.get(1).selected) continue;
+            if (item.type === "pum" && !typelistModel.get(2).selected) continue;
 
             // Apply seacrh !text is defined
 
-            if ( (searchText != "") && !pmlContain(item,searchText)) continue;
+            if ( (searchText !== "") && !pmlContain(item,searchText)) continue;
 
             totalCount++;
             // fetch all item's objects
@@ -229,8 +229,8 @@ Rectangle {
         categoryModel.clear();
         categoryModel.append({keyword: "All", counter: (totalCount-isdeletedCount)});
         // copy tmpcategoryModel to categoryModel with SORT
-        for (var i=0; i<tmpcategoryModel.count;i++){
-            categoryModel.append(tmpcategoryModel.get(i));
+        for (var k=0; k<tmpcategoryModel.count;k++){
+            categoryModel.append(tmpcategoryModel.get(k));
         }
 //        categoryModel.append({objid: -1,name: "Recycle Bin", counter: (isdeletedCount)});
         tmpcategoryModel.clear();
@@ -273,9 +273,9 @@ Rectangle {
 //            console.log("public OK");
 //            if ( (pmlview.objid >= 0) && (item.isdeleted == 1)) continue;
 
-            if (item.type == "pml" && !typelistModel.get(0).selected) continue;
-            if (item.type == "psk" && !typelistModel.get(1).selected) continue;
-            if (item.type == "pum" && !typelistModel.get(2).selected) continue;
+            if (item.type === "pml" && !typelistModel.get(0).selected) continue;
+            if (item.type === "psk" && !typelistModel.get(1).selected) continue;
+            if (item.type === "pum" && !typelistModel.get(2).selected) continue;
 
             if ( (pmlview.keyword != "") && (pmlview.keyword != "All") && !idInArray(pmlview.keyword,item.keywords)) continue;
             if ( (searchText !== "") && !pmlContain(item,searchText)) continue;
@@ -345,7 +345,7 @@ Rectangle {
 
         function removePml(pmlid) {
             for (var i=0; i<count;i++) {
-                if (get(i).pmlid == pmlid) {
+                if (get(i).pmlid === pmlid) {
                     //                console.log("***found***");
                     remove(i);
                 }
@@ -509,7 +509,7 @@ Rectangle {
 
     function focusPml(pmlid) {
         for (var i=0; i<pmlModel.count;i++) {
-            if (pmlModel.get(i).pmlid == pmlid) {
+            if (pmlModel.get(i).pmlid === pmlid) {
 //                console.log("***found***");
                 list.currentIndex = i;
             }
@@ -522,7 +522,7 @@ Rectangle {
 //        console.log("update counter for :"+refpmlid);
         for (var i=0; i< pmlThumbModel.count;i++){
             var item = pmlThumbModel.get(i);
-            if (item.pmlid == refpmlid) {
+            if (item.pmlid === refpmlid) {
 //                console.log("updThumbId - Found:"+item.counter);
                 pmlThumbModel.setProperty(i,"counter",item.counter+1);
 //                console.log("Found, updated:"+item.counter);
@@ -537,7 +537,7 @@ Rectangle {
         for (var i=0; i< pmlThumbModel.count;i++){
             var item = pmlThumbModel.get(i);
 //            console.log("getThumbId - Fetch:"+item.pmlid);
-            if (item.pmlid == refpmlid) {
+            if (item.pmlid === refpmlid) {
 //                console.log("getThumbId - Found:"+item.counter);
                 return item.counter;
             }

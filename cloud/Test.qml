@@ -41,6 +41,7 @@ import QtQuick 2.3
 //import QtQuick.XmlListModel 2.0
 import QtQuick.Window 2.1
 import QtQuick.Controls 1.2
+//import Qt.labs.handlers 1.0
 import "content"
 import "TabbedQuickApp"
 import "."
@@ -82,6 +83,9 @@ Rectangle {
     property int prevX: 0
     property int prevY: 0
 
+    property string currentPocketId: ""
+
+
     focus: true
 
     Keys.onPressed: {
@@ -96,11 +100,29 @@ Rectangle {
 //    FocusScope {
 //        anchors.fill: parent
 
+    function showContextMenu(_id,_x,_y) {
+        if (true) {
+            console.log("context");
+             main.contextMenu(_id,_x,_y);
+        }
+        else {
+            contextMenu.idpocket = _id;
+            contextMenu.width = 300*cloud.getValueFor("hiResRatio","1");//Math.max(300,image.width/2);
+            contextMenu.mousePt = Qt.point(_x,_y);
+            //                                    contextMenu.buttons = mouse.buttons;
+            contextMenu.z = z+1;
+            contextMenu.popup(photoFrame.x+_x, photoFrame.y+_y);
+            console.log("popup:",contextMenu.selectedOption);
+        }
+    }
+
     Rectangle {
         id: scene
         anchors.fill: parent
         color: "black"
         z: parent.z+1
+
+        //onFocusChanged: if (!focus) currentPocketId="";
 
         PinchArea {
             id: mainpinch
@@ -184,20 +206,7 @@ Rectangle {
 
                 onRotationChanged: main.rotpocket(idpocket,rotation)
 
-                function showContextMenu(_id,_x,_y) {
-                    if (true) {
-                         main.contextMenu(_id,_x,_y);
-                    }
-                    else {
-                        contextMenu.idpocket = _id;
-                        contextMenu.width = 300*cloud.getValueFor("hiResRatio","1");//Math.max(300,image.width/2);
-                        contextMenu.mousePt = Qt.point(_x,_y);
-                        //                                    contextMenu.buttons = mouse.buttons;
-                        contextMenu.z = z+1;
-                        contextMenu.popup(photoFrame.x+_x, photoFrame.y+_y);
-                        console.log("popup:",contextMenu.selectedOption);
-                    }
-                }
+                onFocusChanged: currentPocketId = (focus ? idpocket :  "");
 
                 Keys.onPressed: {
                     console.log("press key:",event.key);
@@ -257,25 +266,49 @@ Rectangle {
 ////                    onRotationChanged:  photoFrame.rotation = pinch.rotation
 //                }
 
+
                 MultiPointTouchArea {
                     property bool isdrag: false;
                     property point previousPosition: Qt.point(1, 1);
                     property point previousScenePosition: Qt.point(1, 1);
 
                     id: pocketTouchArea
+
+                    minimumTouchPoints: 1
+                    maximumTouchPoints: 5
                     enabled: parent.touchEnabled
                     mouseEnabled: true
                     anchors.fill: parent
                     Timer{
                         property int count: 0;
                                 id:timer
-                                interval: 200
+                                interval: 300
                                 repeat: false;
 //                                onTriggered: count++;
                             }
+
+//                    TapHandler {
+//                        longPressThreshold: 1
+//                        onTapped: {
+//                            console.log("left clicked");
+//                            main.unclick(idpocket,point.pointId,point.x,point.y);
+//                            if (tapCount == 2) {
+//                                console.log("double Tap");
+//                                showContextMenu(idpocket,point.x,point.y);
+//                            }
+//                        }
+//                        onLongPressed: {
+//                            console.log("long press");
+//                            showContextMenu(idpocket,point.x,point.y);
+//                        }
+//                    }
+
                     onPressed: {
                         photoFrame.focus = true;
+
                         console.log("onPressed",touchPoints.length,touchPoints[0].pressed,timer.count);
+
+
 
                         if ((touchPoints.length===1) &&
                             !main.keyAt(idpocket,touchPoints[0].x,touchPoints[0].y))
@@ -299,7 +332,7 @@ Rectangle {
                             }
 
                         }
-
+//                        else {
                         if (touchPoints.length !== 1) {
                             isdrag = false;
                         }
@@ -312,6 +345,8 @@ Rectangle {
                                 main.click(idpocket,touchPoints[i].pointId,touchPoints[i].x,touchPoints[i].y);
                             }
                         }
+
+//                        }
                     }
                     onReleased: {
                         console.log("onReleased",touchPoints.length,touchPoints[0].pressed);
@@ -441,11 +476,12 @@ Rectangle {
                             main.dblclick(idpocket,mouseX,mouseY);
                         }
                         else {
-                            contextMenu.idpocket = idpocket;
-                            contextMenu.width = 300*cloud.getValueFor("hiResRatio","1");//Math.max(300,image.width/2);
-                            contextMenu.mousePt = Qt.point(mouse.x,mouse.y);
-                            contextMenu.buttons = mouse.buttons;
-                            contextMenu.popup(photoFrame.x+mouseX, photoFrame.y+mouseY);
+//                            contextMenu.idpocket = idpocket;
+//                            contextMenu.width = 300*cloud.getValueFor("hiResRatio","1");//Math.max(300,image.width/2);
+//                            contextMenu.mousePt = Qt.point(mouse.x,mouse.y);
+//                            contextMenu.buttons = mouse.buttons;
+//                            contextMenu.popup(photoFrame.x+mouseX, photoFrame.y+mouseY);
+                            showContextMenu(idpocket,mouse.x,mouse.y);
                             console.log("popup:",contextMenu.selectedOption);
                         }
                     }
@@ -485,6 +521,37 @@ Rectangle {
 
             }
 
+        }
+
+        Image {
+            id: menuContext
+            anchors.top: parent.top
+//            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            z: 9990 //parent.z
+            visible: currentPocketId != ""
+
+            width: dp(48)
+            height: dp(48)
+            source: 'qrc:/content/images/settings.png'
+
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    console.log("context menu",new Date());
+                    var index = getIndex(currentPocketId);
+
+                //    console.log("found index:"+index);
+                    if (index !== -1) {
+
+                        var _lx = renderArea.xmlThumbModel.get(index)._width /2;
+                        var _ly = renderArea.xmlThumbModel.get(index)._height /2;
+                        console.log("menu draw at ("+_lx+","+_ly+")");
+                        showContextMenu(currentPocketId,_lx,_ly);
+                    }
+                }
+            }
         }
 
         Rectangle {
@@ -622,7 +689,7 @@ Rectangle {
                 }
             }
             Tab {
-                name: "About PockEmul "+Qt.application.version
+                name: "About"; //+Qt.application.version
                 icon: "pics/white-about-256.png"
                 About {
                     id: aboutFlick
@@ -663,60 +730,6 @@ Rectangle {
     }
 
 
-//    VisualItemModel {
-//        id: logicModel
-
-//        Tab {
-//            id: sceneTab
-//            name: "PockEmul Desktop"
-//            icon: "qrc:/core/pocket.png"
-//        }
-//        Tab {
-//            name: "Memory Dump"
-//            icon: "qrc:/core/analyser.png"
-//            MemoryDump {
-//                id: memoryDump
-//                anchors.fill: parent
-//            }
-//        }
-//        Tab {
-//            name: "Logic Analyser"
-//            icon: "qrc:/core/analyser.png"
-//            Logic {
-//                id: logicAnalyser
-//                anchors.fill: parent
-//            }
-//        }
-//        Tab {name: "Back"
-//            icon: "pics/back-white.png"
-//            MouseArea {
-//                anchors.fill: parent
-//                onClicked: close();
-//            }
-//        }
-//    }
-
-//    TabbedUI {
-//        id: logic
-//        visible: false
-//        z: parent.z+2
-//        tabsHeight: 72 * cloud.getValueFor("hiResRatio","1")
-//        tabIndex: 0
-//        tabsModel: logicModel
-//        quitIndex: 3
-//        onClose: visible=false;
-
-//        onVisibleChanged: {
-//            if (visible) {
-//                scene.parent = sceneTab;
-//            }
-//            else {
-//                scene.parent = renderArea;
-//            }
-
-//            main.sendTrackingEvent('nav',visible ? 'show':'hide','logic analyser');
-//        }
-//    }
 
 
 //    DevEditor {
@@ -730,8 +743,17 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-
+    }  
+    function setDownloadProgress(min,max,val) {
+        download.minimumValue = min;
+        download.maximumValue = max;
+        download.value = val;
     }
+
+    function setDownloadVisible(visible) {
+        download.visible = visible;
+    }
+
 
     Rectangle {
         id: workingScreen
@@ -909,6 +931,7 @@ Rectangle {
     //        console.log("object sized to ("+_width+","+_height+")");
         }
     }
+
     function showPocket(_pocketId) {
 
         var index = getIndex(_pocketId);
@@ -920,6 +943,7 @@ Rectangle {
     //        console.log("object sized to ("+_width+","+_height+")");
         }
     }
+
     function hidePocket(_pocketId) {
 
         var index = getIndex(_pocketId);
@@ -931,6 +955,7 @@ Rectangle {
     //        console.log("object sized to ("+_width+","+_height+")");
         }
     }
+
     function setRotPocket(_pocketId,angle) {
 
         var index = getIndex(_pocketId);
@@ -956,23 +981,13 @@ Rectangle {
     function getIndex(id) {
         for (var i=0; i<renderArea.xmlThumbModel.count;i++) {
 //            console.log("get:",id,renderArea.xmlThumbModel.get(i).idpocket);
-            if (renderArea.xmlThumbModel.get(i).idpocket == id) {
+            if (renderArea.xmlThumbModel.get(i).idpocket === id) {
                 return i;
             }
         }
         return -1;
     }
 
-
-    function setDownloadProgress(min,max,val) {
-        download.minimumValue = min;
-        download.maximumValue = max;
-        download.value = val;
-    }
-
-    function setDownloadVisible(visible) {
-        download.visible = visible;
-    }
 
     function pickExtension(brand) {
         showroomExt.brandsearch = brand;
@@ -1026,7 +1041,6 @@ Rectangle {
 //        console.log('after SEND:');
 
     }
-
 
     function requestDelete(url, data, callback) {
 

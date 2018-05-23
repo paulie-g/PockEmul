@@ -7,7 +7,7 @@ Rectangle {
     Component.onCompleted: {
         console.log("Settings.qml: Completed",new Date());
 
-        if (cloud.getValueFor("username","") != "") {
+        if (cloud.getValueFor("username","") !== "") {
             user_login(cloud.getValueFor("username"),cloud.getValueFor("password"));
             console.log("logged:");
         }

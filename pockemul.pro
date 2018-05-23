@@ -20,20 +20,19 @@ DEFINES += QUAZIP_STATIC
 #CONFIG += qtquickcompiler
 
 QT += \
-    printsupport \
     core \
     gui \
+    widgets \
+    quickwidgets \
+    printsupport \
     network \
     qml quick \
-#    opengl \
     xml \
-#    multimedia \
     script \
-#    declarative \
     sensors \
-
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets quickwidgets
+#    opengl \
+#    multimedia \
+#    declarative \
 
 PROJECT_TYPE = \
     STANDARD \

@@ -1634,7 +1634,7 @@ void MainWindowPockemul::toggleFullscreen()
 }
 
 void MainWindowPockemul::resizeEvent		( QResizeEvent * event ){
-    Q_UNUSED(event)
+    Q_UNUSED(event);
 
 #ifndef EMSCRIPTEN
     if (downloadManager) {
@@ -1693,7 +1693,7 @@ void MainWindowPockemul::DestroySlot( CPObject *pObject)
 
 void MainWindowPockemul::closeEvent(QCloseEvent *event)
 {
-    Q_UNUSED(event)
+    Q_UNUSED(event);
 
     if (!quitPockEmul()) {
         event->ignore();

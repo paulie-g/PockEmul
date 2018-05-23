@@ -39,7 +39,7 @@ CrenderView::CrenderView(QWidget *parent):cloud(this)
     parse.setHostURI(Cloud::getValueFor("serverURL",""));
     parse.setApplicationId("PockEmul");
 
-//    this->setAttribute(Qt::WA_AcceptTouchEvents);
+    this->setAttribute(Qt::WA_AcceptTouchEvents);
 
 //    grabKeyboard();
     setFocusPolicy(Qt::ClickFocus);
@@ -256,14 +256,14 @@ void CrenderView::contextMenu(QString Id, int x, int y)
 //    qWarning()<<"contextMenu"<<x<<y;
     CPObject *pc = ((CPObject*)Id.toULongLong());
     QPoint pts(x , y);
-    QContextMenuEvent cme(
+    QContextMenuEvent *cme = new QContextMenuEvent(
                 QContextMenuEvent::Mouse,
                 pts,
                 pc->mapToGlobal(pts));
     //contextMenuEvent(cme);
 //    QApplication::sendEvent(pc,&cme);
-    pc->contextMenuEvent(&cme);
-
+    pc->contextMenuEvent(cme);
+//    QApplication::sendEvent(pc, &cme);
 
 }
 
@@ -278,7 +278,7 @@ void CrenderView::click(QString Id, int touchId,int x, int y)
 
     lockClick.lock();
 
-//    qWarning()<<"click:"<<Id<<x<<y;
+    qWarning()<<"click:"<<Id<<x<<y;
     CPObject *pc = ((CPObject*)Id.toULongLong());
     QPoint pts(x , y);
 

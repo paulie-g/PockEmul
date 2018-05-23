@@ -1,6 +1,5 @@
 //TODO: replace all sprintf calls by snprintf. It's safer.
 
-
 #include <QApplication>
 #include <QtPlugin>
 #include <QDebug>
@@ -89,8 +88,8 @@ int ask(QWidget *parent, QString msg, int nbButton);
 
 void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QString &msg)
 {
-    Q_UNUSED(type)
-    Q_UNUSED(context)
+    Q_UNUSED(type);
+    Q_UNUSED(context);
 
     if(msg.startsWith("Invalid parameter")) {
         qWarning()<<msg;
@@ -189,16 +188,7 @@ int main(int argc, char *argv[])
 #endif
 
     app->setAttribute(Qt::AA_DontCreateNativeWidgetSiblings);
-#if QT_VERSION >= 0x050000
-#ifdef Q_OS_ANDROID
-     app->setAttribute(Qt::AA_SynthesizeMouseForUnhandledTouchEvents,true);
-#else
-     app->setAttribute(Qt::AA_SynthesizeMouseForUnhandledTouchEvents,true);
-#endif
-//     test();
-#else
-
-#endif
+    app->setAttribute(Qt::AA_SynthesizeMouseForUnhandledTouchEvents,true);
 
     QCoreApplication::setOrganizationDomain("pockemul.free.fr");
     QCoreApplication::setOrganizationName("Remy Corp.");
@@ -270,6 +260,11 @@ int main(int argc, char *argv[])
     vibDelay = Cloud::getValueFor("vibDelay","50").toInt();
 
 
+    QSplashScreen splash;
+    splash.setPixmap(QPixmap(P_RES(":/pockemul/splash.png")));//.scaled(mainwindow->geometry().size()));
+    splash.show();
+    splash.showMessage("Loading modules...",Qt::AlignLeft,Qt::white);
+    app->processEvents();
 
     mainwindow = new MainWindowPockemul();
 
@@ -307,21 +302,14 @@ int main(int argc, char *argv[])
     mainwindow->openGlFlag=true;
 
 #ifdef Q_OS_ANDROID
-    mainwindow->showFullScreen();
     mainwindow->menuBar()->hide();
+    mainwindow->showFullScreen();
+    mainwindow->update();
 #else
-    mainwindow->show();
-#ifdef Q_OS_WIN
-    QWindowsWindowFunctions::setHasBorderInFullScreen(mainwindow->windowHandle(), true);
-#endif
     mainwindow->restoreGeometry(QByteArray::fromHex(Cloud::getValueFor("geometry").toLatin1()));
+    mainwindow->show();
 #endif
 
-    QSplashScreen splash;
-    splash.setPixmap(QPixmap(P_RES(":/pockemul/splash.png")));//.scaled(mainwindow->geometry().size()));
-    splash.show();
-    splash.showMessage("Loading modules...",Qt::AlignLeft,Qt::white);
-    app->processEvents();
 
 //    test();
 
