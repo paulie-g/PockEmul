@@ -41,7 +41,7 @@ import QtQuick 2.3
 //import QtQuick.XmlListModel 2.0
 import QtQuick.Window 2.1
 import QtQuick.Controls 1.2
-//import Qt.labs.handlers 1.0
+import Qt.labs.handlers 1.0
 import "content"
 import "TabbedQuickApp"
 import "."
@@ -85,6 +85,7 @@ Rectangle {
 
     property string currentPocketId: ""
 
+    property bool showContext: false
 
     focus: true
 
@@ -320,7 +321,8 @@ Rectangle {
                             if(timer.running) {
                                 console.log("context",timer.count)
                                 isdrag=false;
-                                showContextMenu(idpocket,touchPoints[0].x,touchPoints[0].y);
+//                                showContextMenu(idpocket,touchPoints[0].x,touchPoints[0].y);
+                                showContext = true;
                                 timer.stop();
                                 timer.count = 0;
                                 console.log("Stop timer");
@@ -350,6 +352,11 @@ Rectangle {
                     }
                     onReleased: {
                         console.log("onReleased",touchPoints.length,touchPoints[0].pressed);
+
+                        if (showContext) {
+                            showContextMenu(idpocket,touchPoints[0].x,touchPoints[0].y);
+                            showContext = false;
+                        }
 
                         if ( isdrag && (touchPoints.length === 1)) {
                             console.warn("SWIPE Release");
@@ -523,36 +530,6 @@ Rectangle {
 
         }
 
-        Image {
-            id: menuContext
-            anchors.top: parent.top
-//            anchors.bottom: parent.bottom
-            anchors.right: parent.right
-            z: 9990 //parent.z
-            visible: currentPocketId != ""
-
-            width: dp(48)
-            height: dp(48)
-            source: 'qrc:/content/images/settings.png'
-
-            MouseArea {
-                anchors.fill: parent
-
-                onClicked: {
-                    console.log("context menu",new Date());
-                    var index = getIndex(currentPocketId);
-
-                //    console.log("found index:"+index);
-                    if (index !== -1) {
-
-                        var _lx = renderArea.xmlThumbModel.get(index)._width /2;
-                        var _ly = renderArea.xmlThumbModel.get(index)._height /2;
-                        console.log("menu draw at ("+_lx+","+_ly+")");
-                        showContextMenu(currentPocketId,_lx,_ly);
-                    }
-                }
-            }
-        }
 
         Rectangle {
             id: menuSquare
