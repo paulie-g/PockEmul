@@ -302,8 +302,10 @@ int main(int argc, char *argv[])
     mainwindow->openGlFlag=true;
 
 #ifdef Q_OS_ANDROID
-    mainwindow->menuBar()->hide();
+
+//    mainwindow->menuBar()->hide();
     mainwindow->showFullScreen();
+//    mainwindow->show();
     mainwindow->update();
 #else
     mainwindow->restoreGeometry(QByteArray::fromHex(Cloud::getValueFor("geometry").toLatin1()));

@@ -41,7 +41,7 @@ import QtQuick 2.3
 //import QtQuick.XmlListModel 2.0
 import QtQuick.Window 2.1
 import QtQuick.Controls 1.2
-import Qt.labs.handlers 1.0
+//import Qt.labs.handlers 1.0
 import "content"
 import "TabbedQuickApp"
 import "."
@@ -288,28 +288,10 @@ Rectangle {
 //                                onTriggered: count++;
                             }
 
-//                    TapHandler {
-//                        longPressThreshold: 1
-//                        onTapped: {
-//                            console.log("left clicked");
-//                            main.unclick(idpocket,point.pointId,point.x,point.y);
-//                            if (tapCount == 2) {
-//                                console.log("double Tap");
-//                                showContextMenu(idpocket,point.x,point.y);
-//                            }
-//                        }
-//                        onLongPressed: {
-//                            console.log("long press");
-//                            showContextMenu(idpocket,point.x,point.y);
-//                        }
-//                    }
-
                     onPressed: {
                         photoFrame.focus = true;
 
                         console.log("onPressed",touchPoints.length,touchPoints[0].pressed,timer.count);
-
-
 
                         if ((touchPoints.length===1) &&
                             !main.keyAt(idpocket,touchPoints[0].x,touchPoints[0].y))
@@ -321,7 +303,6 @@ Rectangle {
                             if(timer.running) {
                                 console.log("context",timer.count)
                                 isdrag=false;
-//                                showContextMenu(idpocket,touchPoints[0].x,touchPoints[0].y);
                                 showContext = true;
                                 timer.stop();
                                 timer.count = 0;
@@ -353,10 +334,7 @@ Rectangle {
                     onReleased: {
                         console.log("onReleased",touchPoints.length,touchPoints[0].pressed);
 
-                        if (showContext) {
-                            showContextMenu(idpocket,touchPoints[0].x,touchPoints[0].y);
-                            showContext = false;
-                        }
+
 
                         if ( isdrag && (touchPoints.length === 1)) {
                             console.warn("SWIPE Release");
@@ -396,6 +374,11 @@ Rectangle {
                             var ty = touchPoints[i].y;
                             console.warn("Multitouch released touch", touchPoints[i].pointId, "at", tx, ",", ty, "pressed:",touchPoints[i].pressed)
                             main.unclick(idpocket,touchPoints[i].pointId,tx,ty);
+                        }
+
+                        if (showContext) {
+                            showContextMenu(idpocket,touchPoints[0].x,touchPoints[0].y);
+                            showContext = false;
                         }
 
                    }
@@ -488,7 +471,7 @@ Rectangle {
 //                            contextMenu.mousePt = Qt.point(mouse.x,mouse.y);
 //                            contextMenu.buttons = mouse.buttons;
 //                            contextMenu.popup(photoFrame.x+mouseX, photoFrame.y+mouseY);
-                            showContextMenu(idpocket,mouse.x,mouse.y);
+//                            showContextMenu(idpocket,mouse.x,mouse.y);
                             console.log("popup:",contextMenu.selectedOption);
                         }
                     }

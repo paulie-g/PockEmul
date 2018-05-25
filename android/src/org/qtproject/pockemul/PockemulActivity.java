@@ -24,7 +24,10 @@ import android.content.Context;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.Intent.ShortcutIconResource;
+import android.content.pm.ShortcutManager;
+import android.content.pm.ShortcutInfo;
 import android.content.res.Resources;
+import android.graphics.drawable.Icon;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
@@ -40,6 +43,7 @@ import android.view.WindowManager;
 
 import java.io.File;
 import java.util.concurrent.Semaphore;
+import java.util.Arrays;
 import java.lang.reflect.Method;
 
 import org.qtproject.qt5.android.bindings.QtActivity;
@@ -236,6 +240,8 @@ public class PockemulActivity extends QtActivity {
     }
 
     public static void addShortcut(String name,String param) {
+
+  /*
         //Adding shortcut for MainActivity
         //on Home screen
         Intent shortcut = new Intent("com.android.launcher.action.INSTALL_SHORTCUT");
@@ -255,6 +261,26 @@ public class PockemulActivity extends QtActivity {
         shortcut.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, iconRes);
 
         m_instance.sendBroadcast(shortcut);
+
+ */
+
+
+         ShortcutManager shortcutManager = (ShortcutManager) m_instance.getSystemService(ShortcutManager.class);
+
+         // Setup current activity shoud be shortcut object
+         ComponentName comp = new ComponentName("org.qtproject.pockemul","org.qtproject.pockemul.PockemulActivity");
+         Intent intent = new Intent(Intent.ACTION_MAIN).setComponent(comp);
+         intent.putExtra("args",param);
+
+         ShortcutInfo shortcut = new ShortcutInfo.Builder(m_instance, name)
+             .setShortLabel(name)
+             .setLongLabel(name)
+             .setIcon(Icon.createWithResource(m_instance, R.drawable.icon))
+             .setIntent(intent)
+             .build();
+
+         shortcutManager.addDynamicShortcuts(Arrays.asList(shortcut));
+
     }
 
 }
