@@ -54,6 +54,9 @@ Rectangle {
 //        SettingsDelegate { id: syncEnabled; name: "syncEnabled"; labelString: "Enable file synchronization"; type: "checkbox"; defaultText: "on"}
 
         SettingsDelegate { id: labelAppSettings;name: "labelAppSettings";   labelString: "Application Settings"; type: "text"; saveInput: false }
+        SettingsDelegate { id: extFeatures;     name: "extFeatures";        labelString: "Extended features"; type: "checkbox"; defaultText: "off";
+            onButtonClicked: menu2.refreshVisibility();
+        }
         SettingsDelegate { id: soundEnabled;    name: "soundEnabled";       labelString: "Enable sound"; type: "checkbox"; defaultText: "on"}
         SettingsDelegate { id: kbSoundEnabled;  name: "kbSoundEnabled";     labelString: "Keyboard audio feedback"; type: "checkbox"; defaultText: "on"}
         SettingsDelegate { id: hiRes;           name: "hiRes";              labelString: "Enable High Resolution"; type: "checkbox"; defaultText: "on"}

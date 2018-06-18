@@ -35,7 +35,7 @@ Rectangle {
             "New Pocket":       true,
             "New Extension":    true,
             "Settings":         true,
-            "Code Editor":      !android,
+            "Code Editor":      !android && main.getextFeatures(),
             "Save":             true,
             "Load":             true,
             "Cloud":            true,
@@ -43,11 +43,13 @@ Rectangle {
             "Close All":        true,
             "Fit to screen":    true,
             "Toggle Fullscreen":!android,
-            "Logic Analyser":   !android,
+            "Logic Analyser":   !android && main.getextFeatures(),
             "Help":             true,
             "Check for Updates":true,
             "Exit":             true
         }
+        onVisibleChanged: console.log("visibleChanged");
+
         ListElement {
             libelle: "New Pocket"
             imageName: "qrc:/core/pocket.png"
@@ -192,9 +194,9 @@ Rectangle {
 
     }
 
-    Component.onCompleted: {
-        // fetch listelement and apply filter
+    function refreshVisibility() {
 
+        console.log("refreshVisibility");
         for (var i=0; i < menuModel.count; i++) {
             var visible = menuModel.visible[menuModel.get(i).libelle];
 //            console.log(menuModel.get(i).libelle,visible);
@@ -203,6 +205,11 @@ Rectangle {
                 i--;
             }
         }
+    }
+
+    Component.onCompleted: {
+        // fetch listelement and apply filter
+        refreshVisibility();
     }
 }
 

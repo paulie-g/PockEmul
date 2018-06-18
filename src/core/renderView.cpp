@@ -443,7 +443,13 @@ void CrenderView::loadSlot(QString Id, int slotNumber, BinaryData *display)
     QByteArray *ba= new QByteArray((const char*)&(pc->mem[adr]),size);
     display->load(*ba);
 //    display->setAddress(QString("%1").arg(adr,10,16,QChar('0')));
-//    display->setOffset(adr);
+    //    display->setOffset(adr);
+}
+
+extern bool extFeatures;
+bool CrenderView::getextFeatures()
+{
+    return extFeatures;
 }
 
 QString CrenderView::getReleaseNotes(QString _fn)

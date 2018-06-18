@@ -40,6 +40,7 @@ public:
     bool    updated;
 	bool	DirtyBuf[0x1000];
     bool    ready;
+    bool    backLight;
     QList<ClcdSymb> symbList;
 
     void	forceRedraw(void);	// Set the DirtyBuffer array to 1
@@ -58,6 +59,7 @@ public:
 
     void Contrast(int command);
     float getContrast();
+    void toggleBackLight();
 
     const char*	GetClassName(){ return("Clcdc");}
     void SetDirtyBuf(WORD);

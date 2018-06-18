@@ -66,6 +66,7 @@ LaunchButtonWidget* cloudButton;
 LaunchButtonWidget* bookcase;
 LaunchButtonWidget* exitButton;
 
+bool extFeatures=false;
 bool soundEnabled=true;
 bool kbSoundEnabled=true;
 bool hiRes=true;
@@ -191,7 +192,7 @@ int main(int argc, char *argv[])
     app->setAttribute(Qt::AA_SynthesizeMouseForUnhandledTouchEvents,true);
 
     QCoreApplication::setOrganizationDomain("pockemul.free.fr");
-    QCoreApplication::setOrganizationName("Remy Corp.");
+    QCoreApplication::setOrganizationName("PockEmul Corp.");
     QCoreApplication::setApplicationName("PockEmul");
     QCoreApplication::setApplicationVersion(POCKEMUL_VERSION);
 
@@ -212,7 +213,7 @@ int main(int argc, char *argv[])
 
 #ifdef Q_OS_ANDROID
 
-    // Change currentPath t;o /sdcard/pockemul
+    // Change currentPath to /sdcard/pockemul
     QDir d("/");
     d.mkpath("/sdcard/pockemul/documents");
     QDir::setCurrent("/sdcard/pockemul");
@@ -279,10 +280,13 @@ int main(int argc, char *argv[])
 
     mainwindow->setWindowIcon ( QIcon(":/core/pockemul.bmp") );
     mainwindow->resize(680,520);
+
     qWarning()<<Cloud::getValueFor("geometry").toLatin1();
 
     mainwindow->centralwidget->setStyleSheet("background-color:black;color: white;selection-background-color: grey;");
 
+
+    extFeatures =  (Cloud::getValueFor("extFeatures","off")=="on") ? true : false;
     soundEnabled =  (Cloud::getValueFor("soundEnabled","on")=="on") ? true : false;
     kbSoundEnabled =  (Cloud::getValueFor("kbSoundEnabled","on")=="on") ? true : false;
     hiRes =  (Cloud::getValueFor("hiRes","on")=="on") ? true : false;
@@ -302,10 +306,7 @@ int main(int argc, char *argv[])
     mainwindow->openGlFlag=true;
 
 #ifdef Q_OS_ANDROID
-
-//    mainwindow->menuBar()->hide();
     mainwindow->showFullScreen();
-//    mainwindow->show();
     mainwindow->update();
 #else
     mainwindow->restoreGeometry(QByteArray::fromHex(Cloud::getValueFor("geometry").toLatin1()));
@@ -344,16 +345,9 @@ int main(int argc, char *argv[])
         qWarning()<<"opengl";
 
         mainwindow->menuBar()->setVisible(false);
-#if 0
-        view = new CrenderView(mainwindow->centralwidget);
-        QVBoxLayout *windowLayout = new QVBoxLayout(mainwindow->centralwidget);
-        windowLayout->addWidget(view);
-        windowLayout->setMargin(0);
-#else
         view = new CrenderView(mainwindow);
         mainwindow->centralwidget = view;
         mainwindow->setCentralWidget(view);
-#endif
 
     }
     else {

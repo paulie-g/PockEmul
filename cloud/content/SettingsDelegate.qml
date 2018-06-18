@@ -80,7 +80,10 @@ Rectangle {
         bheight: buttonElement.height*.9
         bwidth: bheight * 2
         on: (labelString=="checked") ? true:false
-        onToggleState: if (saveInput) cloud.saveValueFor(key,value)
+        onToggleState: {
+            if (saveInput) cloud.saveValueFor(key,value);
+            buttonClicked();
+        }
         visible: (type == "checkbox")
     }
 

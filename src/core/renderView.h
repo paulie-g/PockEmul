@@ -43,6 +43,8 @@ public:
 
     Q_INVOKABLE void loadSlot(QString Id, int slotNumber, BinaryData* display);
 
+    Q_INVOKABLE bool getextFeatures();
+
     void fillSlotList();
 public slots:
     Q_INVOKABLE void newpocketSlot();
@@ -78,6 +80,7 @@ public slots:
     void stackPosChanged();
     void cloudClose();
     void rotPObject(CViewObject *pObject,int angle);
+
 
     void loadPocket(QString id);
     Q_INVOKABLE void disableKeyboard(QString Id);

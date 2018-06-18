@@ -29,7 +29,7 @@ public:
 
     Ckeyb		*pKEYB;
 
-    QString FrontFname,TopFname,LeftFname,RightFname,BottomFname,BackFname,BackGroundFname;
+    QString FrontFname,TopFname,LeftFname,RightFname,BottomFname,BackFname,BackGroundFname,BackGroundFnameBackLight,BackGroundFnameRef;
     QImage *FrontImage,*TopImage,*LeftImage,*RightImage,*BottomImage,*BackImage;
     QImage RightImageBackup,LeftImageBackup,TopImageBackup,BottomImageBackup,BackImageBackup;
 

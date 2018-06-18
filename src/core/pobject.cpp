@@ -1788,6 +1788,12 @@ void CPObject::BuildContextMenu(QMenu * menu)
     if (pLCDC)
     {
         menulcd = menuconfig->addMenu(tr("LCD contrast"));
+
+        QAction *_action = menulcd->addAction(tr("Backlight"));
+        _action->setCheckable(true);
+        _action->setChecked(pLCDC->backLight);
+
+        menulcd->addSeparator();
         menulcd->addAction(tr("0"));
         menulcd->addAction(tr("1"));
         menulcd->addAction(tr("2"));
@@ -2278,6 +2284,25 @@ void CPObject::slotAudioVolume(QAction * action) {
  * @param action
  */
 void CPObject::slotContrast(QAction * action) {
+    if (action->text() == tr("Backlight")) {
+        action->setChecked(!action->isChecked());
+        pLCDC->toggleBackLight();
+        qWarning()<<"BackLight:"<<action->isCheckable()<<"  checked:"<<action->isChecked();
+
+        if (!BackGroundFnameBackLight.isEmpty()) {
+            if (pLCDC->backLight) {
+                BackGroundFnameRef = BackGroundFname;
+                BackGroundFname =BackGroundFnameBackLight;
+            }
+            else
+                this->BackGroundFname = BackGroundFnameRef;
+        }
+        qWarning()<<BackGroundFname;
+        InitDisplay();
+        pLCDC->forceRedraw();
+        Refresh_Display=true;
+    }
+
     if (action->text() == tr("0")) pLCDC->Contrast(0);
     if (action->text() == tr("1")) pLCDC->Contrast(1);
     if (action->text() == tr("2")) pLCDC->Contrast(2);
