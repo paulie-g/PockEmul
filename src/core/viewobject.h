@@ -29,7 +29,7 @@ public:
 
     Ckeyb		*pKEYB;
 
-    QString FrontFname,TopFname,LeftFname,RightFname,BottomFname,BackFname,BackGroundFname,BackGroundFnameBackLight,BackGroundFnameRef;
+    QString FrontFname,TopFname,LeftFname,RightFname,BottomFname,BackFname,BackGroundFname;
     QImage *FrontImage,*TopImage,*LeftImage,*RightImage,*BottomImage,*BackImage;
     QImage RightImageBackup,LeftImageBackup,TopImageBackup,BottomImageBackup,BackImageBackup;
 
@@ -43,6 +43,9 @@ public:
     Direction currentFlipDir;
     bool flipping;
     QImage* AnimatedImage;
+
+    QRect backLightRect;
+    bool backLight;
 
     bool visible;
 

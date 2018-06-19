@@ -5,5 +5,6 @@
         <file>pc1401/pc1401.png</file>
         <file>pc1401/pc1401Back.png</file>
         <file>pc1401/pc1401Top.png</file>
+        <file>pc1401/pc1401light.png</file>
     </qresource>
 </RCC>

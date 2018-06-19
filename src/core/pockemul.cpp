@@ -688,5 +688,30 @@ void test() {
 }
 #endif
 
+QImage *bright(QImage *_img,int _value, QRect _rect = QRect()) {
 
+    QColor _color;
 
+    if (_rect.isNull()) {
+        _rect = _img->rect();
+    }
+
+    int _offsetX = _rect.left();
+    int _offsetY = _rect.top();
+
+    for(int i=0; i< _rect.width(); i++)
+    {
+        for(int j=0; j<_rect.height(); j++)
+        {
+            _color = _img->pixelColor(_offsetX + i, _offsetY + j);
+
+            int hue = _color.hue();
+
+            // modify hue as you’d like and write back to the image
+            _color.setHsv(hue, _color.saturation(), _value, _color.alpha());
+            _img->setPixelColor(_offsetX + i, _offsetY + j, _color);
+        }
+    }
+
+    return _img;
+}

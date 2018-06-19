@@ -36,6 +36,7 @@ CViewObject::CViewObject(CViewObject *parent):MAINCLASS(parent?parent:mainwindow
     rotation = 0;
 
     visible = true;
+    backLight = false;
 
     pKEYB = new Ckeyb(this);
 }
@@ -175,6 +176,8 @@ QImage * CViewObject::CreateImage(QSize size,QString fname,bool Hmirror,bool Vmi
     return tempImage;
 }
 
+extern QImage *bright(QImage *_img,int _value, QRect _rect = QRect());
+
 bool CViewObject::InitDisplay(void)
 {
     paintingImage.lock();
@@ -187,10 +190,17 @@ bool CViewObject::InitDisplay(void)
     delete BackImage;
 
     BackgroundImageBackup = CreateImage(QSize(),BackGroundFname);
+    if (backLight && !backLightRect.isEmpty()) {
+        bright(BackgroundImageBackup,255,backLightRect);
+    }
+
     // if high resolution active and Image size < 2 x Object size resize to 2x
     if (hiRes & BackgroundImageBackup->width() < (2*getDX())) {
         delete BackgroundImageBackup;
         BackgroundImageBackup = CreateImage(QSize(2*getDX(),2*getDY()),BackGroundFname);
+        if (backLight && !backLightRect.isEmpty()) {
+            bright(BackgroundImageBackup,255,QRect(backLightRect.topLeft()*2,backLightRect.size()*2));
+        }
     }
     internalImageRatio = (float) BackgroundImageBackup->size().width() / getDX();
 //    qWarning()<<"internalImageRatio="<<internalImageRatio<<BackgroundImageBackup->size().width()<<getDX();

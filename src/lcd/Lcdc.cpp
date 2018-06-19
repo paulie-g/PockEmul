@@ -26,7 +26,7 @@ Clcdc::Clcdc(CPObject *parent, QRect _lcdRect, QRect _symbRect, QString _lcdfnam
     Refresh		= false;
     updated     = false;
     contrast = 1;
-    backLight = false;
+
 
     memset(&DirtyBuf,0,sizeof(DirtyBuf));
     Color_On  = QColor(0,0,0,255);
@@ -64,17 +64,6 @@ float Clcdc::getContrast() {
     return contrast;
 }
 
-void Clcdc::toggleBackLight()
-{
-    qWarning()<<"BackLight";
-    backLight = ! backLight;
-    if (backLight) {
-        Color_Off = Color_Off.lighter();
-    }
-    else {
-        Color_Off = Color_Off.darker();
-    }
-}
 
 void Clcdc::Contrast(int command)
 {

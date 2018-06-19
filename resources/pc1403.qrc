@@ -8,5 +8,7 @@
         <file>pc1403/ba4-1403.rom</file>
         <file>pc1403/pc1403.png</file>
         <file>pc1403/pc1403h.png</file>
+        <file>pc1403/pc1403hlight.png</file>
+        <file>pc1403/pc1403light.png</file>
     </qresource>
 </RCC>

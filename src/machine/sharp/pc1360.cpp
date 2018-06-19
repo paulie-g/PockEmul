@@ -28,6 +28,7 @@ Cpc1360::Cpc1360(CPObject *parent)	: Cpc13XX(parent)
     Initial_Session_Fname ="pc1360.pkm";
 
     BackGroundFname	= P_RES(":/pc1360/pc1360.png");
+    backLightRect = QRect(38,40,342,75);
 
     BackFname   = P_RES(":/pc1360/pc1360Back.png");
 

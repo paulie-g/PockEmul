@@ -15,7 +15,7 @@ Cpc1260::Cpc1260(CPObject *parent)	: Cpc1250(parent)
     Initial_Session_Fname ="pc1260.pkm";
 
     BackGroundFname	= P_RES(":/pc1260/pc1260.png");
-    BackGroundFnameBackLight	= P_RES(":/pc1260/pc1260light.png");
+    backLightRect = QRect(90,70,703,77);
 
     memsize			= 0x10000;
 
@@ -69,7 +69,7 @@ Cpc1261::Cpc1261(CPObject *parent)	: Cpc1260(parent)
     Initial_Session_Fname ="pc1261.pkm";
 
     BackGroundFname	= P_RES(":/pc1261/pc1261.png");
-    BackGroundFnameBackLight	= P_RES(":/pc1261/pc1261light.png");
+    backLightRect = QRect(90,70,703,77);
 
     memsize			= 0x10000;
 
@@ -97,8 +97,9 @@ Cpc1262::Cpc1262(CPObject *parent)	: Cpc1261(parent)
     Initial_Session_Fname ="pc1262.pkm";
 
     BackGroundFname	= P_RES(":/pc1262/pc1262.png");
-    BackGroundFnameBackLight	= P_RES(":/pc1262/pc1262light.png");
     BackFname = P_RES(":/pc1262/PC1262Back.png");
+
+    backLightRect = QRect(90,70,703,77);
 
     memsize			= 0x10000;
 
