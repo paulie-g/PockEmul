@@ -22,6 +22,8 @@ Cpc1450::Cpc1450(CPObject *parent)	: Cpc1350(parent)
     Initial_Session_Fname ="pc1450.pkm";
 
     BackGroundFname	= P_RES(":/pc1450/pc1450.png");
+    backLightRect = QRect(125,40,208,41);
+
     memsize			= 0x10000;
 
     SlotList.clear();

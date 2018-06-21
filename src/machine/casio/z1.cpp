@@ -34,6 +34,7 @@ Cz1::Cz1(CPObject *parent, Models mod)	: CpcXXXX(parent)
 {								//[constructor]
     setfrequency( (int) 3686400);
     model = mod;
+
     switch (model) {
     case Z1GR:
         setcfgfname(QString("z1gr"));
@@ -41,6 +42,7 @@ Cz1::Cz1(CPObject *parent, Models mod)	: CpcXXXX(parent)
         SessionHeader	= "Z1GGRPKM";
         Initial_Session_Fname ="z1gr.pkm";
         BackGroundFname	= P_RES(":/z1/z1gr.png");
+        backLightRect = QRect(166,80,760,143);
         break;
     case FX890P:
         setcfgfname(QString("fx890p"));
@@ -48,6 +50,7 @@ Cz1::Cz1(CPObject *parent, Models mod)	: CpcXXXX(parent)
         SessionHeader	= "FX890PPKM";
         Initial_Session_Fname ="fx890p.pkm";
         BackGroundFname	= P_RES(":/z1/fx-890p.png");
+        backLightRect = QRect(80,39,385,75);
         break;
     default:
         setcfgfname(QString("z1"));
@@ -55,6 +58,7 @@ Cz1::Cz1(CPObject *parent, Models mod)	: CpcXXXX(parent)
         SessionHeader	= "Z1PKM";
         Initial_Session_Fname ="z1.pkm";
         BackGroundFname	= P_RES(":/z1/z1.png");
+        backLightRect = QRect(171,78,756,149);
     }
 
     LeftFname       = P_RES(":/z1/z1Left.png");

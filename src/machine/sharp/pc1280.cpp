@@ -22,6 +22,7 @@ Cpc1280::Cpc1280(CPObject *parent)	: Cpc1360(parent)
     Initial_Session_Fname ="pc1280.pkm";
 
     BackGroundFname	= P_RES(":/pc1280/pc-1280.png");
+    backLightRect = QRect(142,76,686,110);
 
     back = new QImage(P_RES(":/pc1280/pc-1280back.png"));
     LeftFname = RightFname = TopFname = BottomFname = BackFname = "";

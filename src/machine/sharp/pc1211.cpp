@@ -18,6 +18,7 @@ Cpc1211::Cpc1211(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="pc1211.pkm";
 
     BackGroundFname	= P_RES(":/pc1211/pc-1211.png");
+    backLightRect = QRect(88,71,792,72);
 
     memsize		= 0x10000;
 

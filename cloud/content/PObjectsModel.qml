@@ -39,7 +39,7 @@ XmlListModel {
                     // check if package.json exists in P_RES
                     var _installed = true;
                     if ( (item.res !== "") &&
-                         (main.getRes(':/'+item.res+'/package.json') == "") ) {
+                         (main.getRes(':/'+item.res+'/package.json') === "") ) {
                         console.log("NOT FOUND:",':/'+item.res+'/package.json');
                         _installed = false;
                     }

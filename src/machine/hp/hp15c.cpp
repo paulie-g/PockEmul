@@ -56,6 +56,8 @@ Chp15c::Chp15c(CPObject *parent,Models mod):CpcXXXX(parent)
     InitMemValue	= 0x00;
     SlotList.clear();
 
+    backLightRect = QRect(88,28,215,41);
+
     switch (mod) {
     case HP11:
         setcfgfname(QString("hp11c"));

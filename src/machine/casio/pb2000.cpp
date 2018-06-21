@@ -33,6 +33,8 @@ Cpb2000::Cpb2000(CPObject *parent)	: Cpb1000(parent)
     Initial_Session_Fname ="pb2000.pkm";
 
     BackGroundFname	= P_RES(":/pb2000/pb-2000.png");
+    backLightRect = QRect(123,85,760,144);
+
     RightFname      = P_RES(":/pb2000/pb-2000RIGHT.png");
     BackFname       = P_RES(":/pb2000/pb-2000BACK.png");
 

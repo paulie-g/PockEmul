@@ -408,7 +408,7 @@ Rectangle {
                             var dx = x - previousPosition.x;
                             var dy = y - previousPosition.y;
 //                            previousPosition = Qt.point(touchPoints[0].x, touchPoints[0].y);
-                            console.warn("Multitouch updated:", touchPoints[0].pointId, "at", x,",",y,"d=",dx, ",", dy)
+ //                           console.warn("Multitouch updated:", touchPoints[0].pointId, "at", x,",",y,"d=",dx, ",", dy)
                             main.movepocket(idpocket,photoFrame.x+dx,photoFrame.y+dy);
                         }
                     }

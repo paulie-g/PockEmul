@@ -347,8 +347,10 @@ void Parse::postProcessGet(QJsonObject obj) {
 
 
     if (getEndPoint() == "classes/Pml?include=owner&order=-updatedAt&limit=2000") {
-        qWarning()<<"obj:"<<obj;
+        qWarning()<<"obj:";
+        qWarning()<<obj["results"].toString();
         generatePmlXml(obj);
+        qWarning()<<"xml:"<<xmlPmlList;
     }
 
     emit currentObjectChanged( obj);

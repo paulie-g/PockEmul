@@ -87,6 +87,7 @@ Cx07::Cx07(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="x07.pkm";
 
     BackGroundFname	= P_RES(":/x07/x07.png");
+    backLightRect = QRect(121,113,595,198);
 
     RightFname  = P_RES(":/x07/x07Right.png");
     LeftFname  = P_RES(":/x07/x07Left.png");

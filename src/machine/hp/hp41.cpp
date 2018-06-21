@@ -124,6 +124,7 @@ Chp41::Chp41(CPObject *parent):CpcXXXX(parent)
     Initial_Session_Fname ="hp41.pkm";
 
     BackGroundFname	= P_RES(":/hp41/hp41.png");
+    backLightRect = QRect(25,31,272,49);
 
     TopFname = P_RES(":/hp41/top.png");
     BackFname = P_RES(":/hp41/back.png");

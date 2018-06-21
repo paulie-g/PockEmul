@@ -38,6 +38,7 @@ if (!fp_log) fp_log=fopen("pc1600.log","wt");	// Open log file
     SessionHeader	= "PC1600PKM";
     Initial_Session_Fname ="pc1600.pkm";
     BackGroundFname	= P_RES(":/pc1600/pc-1600.png");
+    backLightRect = QRect(92,78,699,166);
 
     LeftFname   = P_RES(":/pc1600/pc1600Left.png");
     RightFname  = P_RES(":/pc1600/pc1600Right.png");

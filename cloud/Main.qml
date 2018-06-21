@@ -59,7 +59,8 @@ Rectangle {
 
     VisualItemModel {
         id: tabsModel
-        Tab {name: "Cloud"
+        Tab {
+            name: "Cloud"
             icon: "pics/public-cloud-white.png"
 
             color: "yellow"

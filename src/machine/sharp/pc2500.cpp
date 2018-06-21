@@ -29,6 +29,8 @@ Cpc2500::Cpc2500(CPObject *parent)	: Cpc1350(parent)
     Initial_Session_Fname ="pc2500.pkm";
 
     BackGroundFname	= P_RES(":/pc2500/pc2500.png");
+    backLightRect = QRect(544,53,341,98);
+
     RightFname = "";
     LeftFname  = "";
     TopFname   = "";

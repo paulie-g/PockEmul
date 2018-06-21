@@ -28,6 +28,7 @@ Cjr800::Cjr800(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="jr800.pkm";
 
     BackGroundFname	= P_RES(":/jr800/jr800.png");
+    backLightRect = QRect(85,87,369,126);
 
     RightFname = P_RES(":/jr800/jr800Right.png");
     LeftFname = P_RES(":/jr800/jr800Left.png");

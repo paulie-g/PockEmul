@@ -57,6 +57,7 @@ Cpc2001::Cpc2001(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="pc2001.pkm";
 
     BackGroundFname	= P_RES(":/pc2001/pc2001.png");
+    backLightRect = QRect(72,57,552,73);
 
     RightFname = P_RES(":/pc2001/pc2001Right.png");
     LeftFname = P_RES(":/pc2001/pc2001Left.png");

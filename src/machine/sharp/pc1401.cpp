@@ -29,6 +29,7 @@ Cpc1401::Cpc1401(CPObject *parent)	: CpcXXXX(parent)
     BackFname   = P_RES(":/pc1401/pc1401Back.png");
     TopFname    = P_RES(":/pc1401/pc1401Top.png");
     BottomFname = P_RES(":/pc1401/pc1401Top.png");
+    backLightRect = QRect(113,41,222,39);
 
     memsize			= 0x10000;
     LeftFname = P_RES(":/pc1250/125xLeft.png");

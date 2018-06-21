@@ -122,23 +122,23 @@ Rectangle {
                         var item = get(i)
 //                        console.log(item.objects)
                         refpmlModel.append({rowid : i,
-                                           pmlid: item.pmlid,
-                                           username: decodeXml(item.username),
-                                           name: decodeXml(item.name),
-                                           avatar_url: decodeXml(item.avatar_url),
-                                           keywords: decodeXml(item.keywords),
-                                           access_id: item.access_id,
-                                           ispublic: item.ispublic,
-                                           isdeleted: item.isdeleted,
-                                           title: decodeXml(item.title),
-                                           description: decodeXml(item.description),
-                                           type: decodeXml(item.type),
-                                           snap_small: decodeXml(item.snap_small),
-                                           snap_medium: decodeXml(item.snap_medium),
-                                           snap_large: decodeXml(item.snap_large),
-                                           pmlfile: decodeXml(item.pmlfile),
-                                           createdAt: decodeXml(item.createdAt),
-                                           updatedAt: decodeXml(item.updatedAt)})
+                                           pmlid        : item.pmlid,
+                                           username     : decodeXml(item.username),
+                                           name         : decodeXml(item.name),
+                                           avatar_url   : decodeXml(item.avatar_url),
+                                           keywords     : decodeXml(item.keywords),
+                                           access_id    : item.access_id,
+                                           ispublic     : item.ispublic,
+                                           isdeleted    : item.isdeleted,
+                                           title        : decodeXml(item.title),
+                                           description  : decodeXml(item.description),
+                                           type         : decodeXml(item.type),
+                                           snap_small   : decodeXml(item.snap_small),
+                                           snap_medium  : decodeXml(item.snap_medium),
+                                           snap_large   : decodeXml(item.snap_large),
+                                           pmlfile      : decodeXml(item.pmlfile),
+                                           createdAt    : decodeXml(item.createdAt),
+                                           updatedAt    : decodeXml(item.updatedAt)})
                     }
 
                     cloud.saveCache(cacheFileName,serializerefpmlModel());
@@ -203,7 +203,7 @@ Rectangle {
             if (item.type === "psk" && !typelistModel.get(1).selected) continue;
             if (item.type === "pum" && !typelistModel.get(2).selected) continue;
 
-            // Apply seacrh !text is defined
+            // Apply seach !text is defined
 
             if ( (searchText !== "") && !pmlContain(item,searchText)) continue;
 

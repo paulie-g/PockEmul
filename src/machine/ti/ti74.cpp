@@ -31,6 +31,7 @@ Cti74::Cti74(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="ti74.pkm";
 
     BackGroundFname	= P_RES(":/ti74/ti74.png");
+    backLightRect = QRect(89,95,861,100);
 
     memsize		= 0x20000;
     InitMemValue	= 0x00;

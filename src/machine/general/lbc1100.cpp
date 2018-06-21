@@ -47,6 +47,7 @@ Clbc1100::Clbc1100(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="lbc1100.pkm";
 
     BackGroundFname	= P_RES(":/lbc1100/lbc-1100.png");
+    backLightRect = QRect(81,75,847,112);
 //    LcdFname		= P_RES(":/lbc1100/lbc-1100lcd.png");
 //    SymbFname		= "";
 

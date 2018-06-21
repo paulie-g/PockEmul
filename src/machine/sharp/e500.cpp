@@ -90,6 +90,7 @@ Ce500::Ce500(CPObject *parent, Models mod)	: CpcXXXX(parent)
         Initial_Session_Fname ="e500.pkm";
 
         BackGroundFname	= P_RES(":/e500/pc-e500.png");
+        backLightRect = QRect(142,152,697,169);
 
         internalRamKb = 32;
         SlotList.append(CSlot(256, 0xC0000 , P_RES(":/e500/s3.rom"), "e500/s3.rom" , CSlot::ROM , "ROM 7.3"));
@@ -100,6 +101,7 @@ Ce500::Ce500(CPObject *parent, Models mod)	: CpcXXXX(parent)
         Initial_Session_Fname ="e550.pkm";
 
         BackGroundFname	= P_RES(":/e500/pc-e550.png");
+        backLightRect = QRect(142,142,694,175);
 
         pLCDC->rect.moveTo(70,96);
         pLCDC->symbRect.moveTo(70,76);
@@ -113,6 +115,7 @@ Ce500::Ce500(CPObject *parent, Models mod)	: CpcXXXX(parent)
         Initial_Session_Fname ="e500s.pkm";
 
         BackGroundFname	= P_RES(":/e500/pc-e500s.png");
+        backLightRect = QRect(79,83,441,101);
 
         internalRamKb = 32;
         SlotList.append(CSlot(128, 0x20000 , P_RES(":/e500/s3ext-8.3-E500S.rom"), "e500/s3ext-8.3-E500S.rom" , CSlot::ROM , "ROM 8.3 EXT"));

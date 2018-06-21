@@ -26,6 +26,7 @@ Cpc1250::Cpc1250(CPObject *parent)	: CpcXXXX(parent)
 	Initial_Session_Fname ="pc1250.pkm";
 
     BackGroundFname	= P_RES(":/pc1250/pc1250.png");
+    backLightRect = QRect(63,48,468,49);
 
     LeftFname = P_RES(":/pc1250/125xLeft.png");
     RightFname = P_RES(":/pc1250/PC1250Right.png");
@@ -76,6 +77,7 @@ Ctrspc3::Ctrspc3(CPObject *parent)	: Cpc1250(parent)
     Initial_Session_Fname ="trspc3.pkm";
 
     BackGroundFname	= P_RES(":/pc1250/pc31k.png");
+    backLightRect = QRect(47,38,353,37);
 }
 
 bool Cpc1250::UpdateFinalImage(void)

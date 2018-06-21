@@ -32,6 +32,7 @@ public:
         Initial_Session_Fname ="trspc3ext.pkm";
 
         BackGroundFname	= P_RES(":/pc1250/pc31k.png");
+        backLightRect = QRect(47,38,353,37);
     }
 
 

@@ -17,7 +17,7 @@ CONFIG += rtti
 
 DEFINES += QUAZIP_STATIC
 
-#CONFIG += qtquickcompiler
+CONFIG += qtquickcompiler
 
 QT += \
     core \

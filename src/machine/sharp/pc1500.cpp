@@ -38,6 +38,7 @@ Cpc15XX::Cpc15XX(CPObject *parent)	: CpcXXXX(parent)
     SessionHeader	= "PC1500PKM";
 	Initial_Session_Fname ="pc1500.pkm";
     BackGroundFname	= P_RES(":/pc1500/pc1500.png");
+    backLightRect = QRect(85,42,395,38);
 
     memsize			= 0x10000;
 	InitMemValue	= 0xFF;
@@ -84,6 +85,7 @@ Cpc1500::Cpc1500(CPObject *parent)	: Cpc15XX(parent)
 
     setcfgfname(QString("pc1500"));
 
+
     SlotList.clear();
 //    SlotList.append(CSlot(8 , 0x0000 ,	""								, "" , CSlot::RAM , "RAM"));
 //    SlotList.append(CSlot(8 , 0x2000 ,	""								, "" , CSlot::ROM , "ROM"));
@@ -103,6 +105,7 @@ Cpc1500A::Cpc1500A(CPObject *parent)	: Cpc15XX(parent)
     SessionHeader	= "PC1500APKM";
     Initial_Session_Fname ="pc1500A.pkm";
     BackGroundFname	= P_RES(":/pc1500A/pc1500A.png");
+    backLightRect = QRect(85,51,396,34);
 
     memsize			= 0x10000;
 
@@ -125,6 +128,7 @@ Ctrspc2::Ctrspc2(CPObject *parent)	: Cpc1500(parent)
     SessionHeader	= "TRSPC-2PKM";
     Initial_Session_Fname ="trspc2.pkm";
     BackGroundFname	= P_RES(":/pc1500/trspc2.png");
+    backLightRect = QRect(163,47,368,35);
 
     pLCDC->rect.moveTo(181,62);
 

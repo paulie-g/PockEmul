@@ -73,6 +73,7 @@ Chx20::Chx20(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="hx20.pkm";
 
     BackGroundFname	= P_RES(":/hx20/hx20.png");
+    backLightRect = QRect(411,85,302,98);
 
     RightFname = P_RES(":/hx20/hx20Right.png");
 //    LeftFname = P_RES(":/hx20/hx20Left.png");

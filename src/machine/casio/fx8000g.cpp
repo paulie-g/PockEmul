@@ -37,6 +37,7 @@ Cfx8000g::Cfx8000g(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="fx8000g.pkm";
 
     BackGroundFname	= P_RES(":/fx8000g/fx8000g.png");
+    backLightRect = QRect(104,92,392,255);
 
     LeftFname   = P_RES(":/fx8000g/fx8000gleft.png");
     BackFname   = P_RES(":/fx8000g/fx8000gback.png");
