@@ -290,6 +290,7 @@ public slots:
 
     void slotContrast(QAction *);
 
+    void slotBackLight(bool _checked);
 	void slotPower();
     void slotTurnOff();
     void slotTurnOn();

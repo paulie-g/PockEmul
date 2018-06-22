@@ -28,7 +28,7 @@ Crlh1000::Crlh1000(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="rlh1000.pkm";
 
     BackGroundFname	= P_RES(":/rlh1000/rlh1000.png");
-    backLightRect = QRect(156,38,331,31);
+    backLightRect = QRect(200,49,417,40);
 
     LeftFname   = P_RES(":/rlh1000/rlh1000Left.png");
 //    RightFname  = P_RES(":/rlh1000/rlh1000Right.png");

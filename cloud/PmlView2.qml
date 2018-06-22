@@ -178,9 +178,10 @@ Rectangle {
                 pmlitem.description+" "+
                 pmlitem.username+" "+
                 pmlitem.objects+" "+
+                pmlitem.keywords+" "+
                 (pmlitem.access_id === 0 ? "private" : (pmlitem.access_id === -2 ? "friend" : "public")) ;
 //        console.log("searchText:**"+searchText+"**");
-        var tableau=searchText.toUpperCase().split(" ");
+        var tableau=searchText.toUpperCase().split([" ", "[]"]);
         for (var i=0; i<tableau.length; i++) {
             if ( (tableau[i]!=="") && (searchString.toUpperCase().indexOf(tableau[i])>=0) ) return true;
         }
@@ -286,6 +287,7 @@ Rectangle {
                                 name: item.name,
                                 avatar_url: item.avatar_url,
                                 objects: item.objects,
+                                keywords: item.keywords,
                                 access_id: item.access_id,
                                 ispublic: item.ispublic,
                                 isdeleted: item.isdeleted,

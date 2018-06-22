@@ -162,6 +162,15 @@ Item {
             }
         }
 
+        Text {
+            id: keywordsText
+            text: keywords;
+            renderType: Text.NativeRendering
+            //            width: parent.width;
+            wrapMode: Text.WordWrap
+            font { bold: false; family: "Helvetica"; pointSize: 14 }
+        }
+
         Edit {
             id: descriptionText
             width: parent.width;
@@ -182,7 +191,6 @@ Item {
 //            id: comments
 //        }
     }
-
 
     Item {
         id: details

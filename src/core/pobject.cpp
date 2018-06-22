@@ -1773,6 +1773,13 @@ void CPObject::BuildContextMenu(QMenu * menu)
 
     menuconfig = menu->addMenu(tr("Configuration"));
 
+
+    if (!backLightRect.isEmpty()) {
+        QAction *_action = menuconfig->addAction(tr("Backlight"),this,SLOT(slotBackLight(bool)));
+        _action->setCheckable(true);
+        _action->setChecked(backLight);
+    }
+
     if ( dynamic_cast<CpcXXXX *>(this) &&  ((CpcXXXX*)this)->pCPU )
     {
         menucpuspeed = menuconfig->addMenu(tr("CPU Speed"));
@@ -1788,14 +1795,6 @@ void CPObject::BuildContextMenu(QMenu * menu)
     if (pLCDC)
     {
         menulcd = menuconfig->addMenu(tr("LCD contrast"));
-
-        if (!backLightRect.isEmpty()) {
-            QAction *_action = menulcd->addAction(tr("Backlight"));
-            _action->setCheckable(true);
-            _action->setChecked(backLight);
-        }
-
-        menulcd->addSeparator();
         menulcd->addAction(tr("0"));
         menulcd->addAction(tr("1"));
         menulcd->addAction(tr("2"));
@@ -2286,24 +2285,26 @@ void CPObject::slotAudioVolume(QAction * action) {
  * @param action
  */
 void CPObject::slotContrast(QAction * action) {
-    if (action->text() == tr("Backlight")) {
-        action->setChecked(!action->isChecked());
-        backLight = !backLight;
-
-        if (!backLightRect.isNull()) {
-            InitDisplay();
-        }
-
-        qWarning()<<BackGroundFname;
-        pLCDC->forceRedraw();
-        Refresh_Display=true;
-    }
 
     if (action->text() == tr("0")) pLCDC->Contrast(0);
     if (action->text() == tr("1")) pLCDC->Contrast(1);
     if (action->text() == tr("2")) pLCDC->Contrast(2);
     if (action->text() == tr("3")) pLCDC->Contrast(3);
     if (action->text() == tr("4")) pLCDC->Contrast(4);
+}
+
+void CPObject::slotBackLight(bool _checked)
+{
+
+    backLight = !backLight;
+    ((QAction *) sender())->setChecked(backLight);
+    if (!backLightRect.isNull()) {
+        InitDisplay();
+    }
+
+    pLCDC->forceRedraw();
+    Refresh_Display=true;
+
 }
 
 /**

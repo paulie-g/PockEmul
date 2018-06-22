@@ -347,10 +347,10 @@ void Parse::postProcessGet(QJsonObject obj) {
 
 
     if (getEndPoint() == "classes/Pml?include=owner&order=-updatedAt&limit=2000") {
-        qWarning()<<"obj:";
-        qWarning()<<obj["results"].toString();
+        qWarning()<<"obj2:";
+
         generatePmlXml(obj);
-        qWarning()<<"xml:"<<xmlPmlList;
+        qWarning()<<"xml:"<<xmlPmlList.left(2000);
     }
 
     emit currentObjectChanged( obj);
@@ -806,9 +806,8 @@ QString Parse::generatePmlXml(QJsonObject obj) {
     xml->writeEndElement();  // pmllist
 
     xmlPmlList = _xml;
-    emit xmlPmlListChanged(xmlPmlList);
 
-    qWarning()<<xmlPmlList;
+    emit xmlPmlListChanged(xmlPmlList);
 
     return xmlPmlList;
 }
