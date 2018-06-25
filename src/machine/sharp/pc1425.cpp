@@ -33,6 +33,7 @@ Cpc1425::Cpc1425(CPObject *parent) : Cpc1403(parent)
     setDZmm(16);
 
     BackGroundFname	= P_RES(":/pc1425/pc1425.png");
+    backLightRect = QRect(125,41,204,39);
 
     RightFname = P_RES(":/pc1350/pc1350Right.png");
     LeftFname  = P_RES(":/pc1350/pc1350Left.png");

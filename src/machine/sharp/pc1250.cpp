@@ -26,7 +26,7 @@ Cpc1250::Cpc1250(CPObject *parent)	: CpcXXXX(parent)
 	Initial_Session_Fname ="pc1250.pkm";
 
     BackGroundFname	= P_RES(":/pc1250/pc1250.png");
-    backLightRect = QRect(63,48,468,49);
+    backLightRect = QRect(47,38,354,35);
 
     LeftFname = P_RES(":/pc1250/125xLeft.png");
     RightFname = P_RES(":/pc1250/PC1250Right.png");
