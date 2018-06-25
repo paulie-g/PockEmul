@@ -191,7 +191,15 @@ bool CViewObject::InitDisplay(void)
 
     BackgroundImageBackup = CreateImage(QSize(),BackGroundFname);
     if (backLight && !backLightRect.isEmpty()) {
-        bright(BackgroundImageBackup,255,backLightRect);
+        QRect _rect = backLightRect;
+        float _ratioX = BackgroundImageBackup->width() / this->getDX();
+        float _ratioY = BackgroundImageBackup->height()/ this->getDY();
+
+        _rect.setTopLeft(QPoint(backLightRect.x()*_ratioX,backLightRect.y()*_ratioY));
+        _rect.setWidth(backLightRect.width()*_ratioX);
+        _rect.setHeight(backLightRect.height()*_ratioY);
+
+        bright(BackgroundImageBackup,255,_rect);
     }
 
     // if high resolution active and Image size < 2 x Object size resize to 2x
