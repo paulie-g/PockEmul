@@ -142,7 +142,7 @@ Ccc40::Ccc40(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="cc40.pkm";
 
     BackGroundFname	= P_RES(":/cc40/cc40.png");
-    backLightRect = QRect(95,315,1038,137);
+    backLightRect = QRect(46,158,521,68);
 //    LcdFname		= P_RES(":/cc40/cc40lcd.png");
 //    SymbFname		= P_RES(":/cc40/cc40lcd.png");
 

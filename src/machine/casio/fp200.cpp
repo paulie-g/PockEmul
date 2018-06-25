@@ -33,6 +33,7 @@ Cfp200::Cfp200(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="fp200.pkm";
 
     BackGroundFname	= P_RES(":/fp200/fp200.png");
+    backLightRect = QRect(148,54,333,134);
 
     TopFname    = P_RES(":/fp200/fp200Top.png");
     LeftFname   = P_RES(":/fp200/fp200Left.png");

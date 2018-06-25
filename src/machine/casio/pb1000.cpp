@@ -38,7 +38,7 @@ Cpb1000::Cpb1000(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="pb1000.pkm";
 
     BackGroundFname	= P_RES(":/pb1000/pb-1000.png");
-    backLightRect = QRect(159,239,831,179);
+    backLightRect = QRect(81,117,415,92);
 
     back = new QImage(P_RES(":/pb1000/pb1000back.png"));
 

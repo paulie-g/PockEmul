@@ -128,7 +128,7 @@ Ctrspc2::Ctrspc2(CPObject *parent)	: Cpc1500(parent)
     SessionHeader	= "TRSPC-2PKM";
     Initial_Session_Fname ="trspc2.pkm";
     BackGroundFname	= P_RES(":/pc1500/trspc2.png");
-    backLightRect = QRect(163,47,368,35);
+    backLightRect = QRect(173,49,391,38);
 
     pLCDC->rect.moveTo(181,62);
 
