@@ -47,7 +47,7 @@ Ctpc8300::Ctpc8300(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="tpc8300.pkm";
 
     BackGroundFname	= P_RES(":/tpc8300/tpc-8300.png");
-    backLightRect = QRect(193,41,339,52);
+    backLightRect = QRect(191,41,330,52);
 
     memsize		= 0x10000;
     InitMemValue	= 0xFF;

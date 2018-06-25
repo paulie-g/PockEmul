@@ -104,6 +104,7 @@ Cmc2200::Cmc2200(CPObject *parent)	: Cpc1245(parent)
     Initial_Session_Fname ="mc2200.pkm";
 
     BackGroundFname	= P_RES(":/mc2200/mc2200.png");
+    backLightRect = QRect(118,38,211,36);
 
     pLCDC->rect.moveTo(125,54);
     pLCDC->symbRect.moveTo(125,40);

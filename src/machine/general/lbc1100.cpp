@@ -47,7 +47,7 @@ Clbc1100::Clbc1100(CPObject *parent)	: CpcXXXX(parent)
     Initial_Session_Fname ="lbc1100.pkm";
 
     BackGroundFname	= P_RES(":/lbc1100/lbc-1100.png");
-    backLightRect = QRect(81,75,847,112);
+    backLightRect = QRect(55,51,568,73);
 //    LcdFname		= P_RES(":/lbc1100/lbc-1100lcd.png");
 //    SymbFname		= "";
 
@@ -83,8 +83,7 @@ Clbc1100::Clbc1100(CPObject *parent)	: CpcXXXX(parent)
 
     pLCDC		= new Clcdc_lbc1100(this,
                                     QRect(70,60,240*2.15,21*2.75),
-                                    QRect(),
-                                    P_RES(":/lbc1100/lbc-1100lcd.png"));
+                                    QRect());
     pCPU		= new Cupd7907(this);    upd7907 = (Cupd7907*)pCPU;
     for (int i=0;i<4;i++) upd16434[i]  = new CUPD16434(this);
     pd1990ac    = new CPD1990AC(this);
