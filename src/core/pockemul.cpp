@@ -310,16 +310,13 @@ int main(int argc, char *argv[])
     mainwindow->update();
 #else
 
-    mainwindow->restoreGeometry(QByteArray::fromHex(Cloud::getValueFor("geometry").toLatin1()));
-
+    mainwindow->setAttribute(Qt::WA_Mapped) ;
+    mainwindow->show();
 #ifdef Q_OS_WIN
     QWindowsWindowFunctions::setHasBorderInFullScreen(mainwindow->windowHandle(), true);
 #endif
-    mainwindow->show();
-    if (Cloud::getValueFor("fullscreen") == QString("true")) {
-                mainwindow->toggleFullscreen();
-                mainwindow->toggleFullscreen();
-    }
+
+    mainwindow->restoreGeometry(QByteArray::fromHex(Cloud::getValueFor("geometry").toLatin1()));
 
 #endif
 
