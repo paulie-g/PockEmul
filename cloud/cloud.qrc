@@ -21,7 +21,6 @@
         <file>content/SettingsDelegate.qml</file>
         <file>content/Edit.qml</file>
         <file>content/ComboBox.qml</file>
-        <file>content/Switch.qml</file>
         <file>content/images/background-off.png</file>
         <file>content/images/background-on.png</file>
         <file>content/images/knob.png</file>
@@ -93,5 +92,6 @@
         <file>content/SlotList.qml</file>
         <file>content/Portal.qml</file>
         <file>content/SendRes.qml</file>
+        <file>content/SwitchCustom.qml</file>
     </qresource>
 </RCC>

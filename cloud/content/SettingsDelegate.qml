@@ -1,5 +1,6 @@
 
 import QtQuick 2.0
+//import QtQuick.Controls 2.4
 
 Rectangle {
     id: delegate
@@ -73,20 +74,31 @@ Rectangle {
             }
         }
     }
-    Switch {
-        objectName: name
-        anchors.right: parent.right
-        anchors.verticalCenter: parent.verticalCenter
-        bheight: buttonElement.height*.9
-        bwidth: bheight * 2
-        on: (labelString=="checked") ? true:false
-        onToggleState: {
-            if (saveInput) cloud.saveValueFor(key,value);
-            buttonClicked();
-        }
-        visible: (type == "checkbox")
-    }
 
+       SwitchCustom {
+           objectName: name
+           anchors.right: parent.right
+           anchors.verticalCenter: parent.verticalCenter
+           bheight: buttonElement.height*.9
+           bwidth: bheight * 2
+           on: (labelString=="checked") ? true:false
+           onToggleState: if (saveInput) cloud.saveValueFor(key,value)
+           visible: (type == "checkbox")
+       }
+
+//    Switch {
+//        objectName: name
+//        anchors.right: parent.right
+//        anchors.verticalCenter: parent.verticalCenter
+//        checked: cloud.getValueFor(objectName, defaultText) === "on" //(labelString=="checked") ? true:false
+//        onCheckedChanged: {
+//            console.log("toggle check:"+name);
+//            if (saveInput) cloud.saveValueFor(name,checked ? "on":"off");
+//            buttonClicked();
+//        }
+//        visible: (type == "checkbox")
+
+//    }
 
 //    Rectangle {
 //        width: delegate.width; height: 1; color: "#cccccc"

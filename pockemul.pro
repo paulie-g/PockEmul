@@ -1638,7 +1638,6 @@ OTHER_FILES *= \
     cloud/content/SettingsDelegate.qml \
     cloud/content/Edit.qml \
     cloud/content/ComboBox.qml \
-    cloud/content/Switch.qml \
     cloud/content/Switch2.qml \
     cloud/content/SettingsView.qml \
     cloud/content/knob.svg \
@@ -1692,7 +1691,10 @@ RESOURCES += \
 
 DISTFILES += \
     package.pri \
-    resources/pockemul/about.html
+    resources/pockemul/about.html \
+    cloud/content/SwitchCustom.qml \
+    cloud/content/SwitchCustom.qml \
+    cloud/content/SwitchCustom.qml
 
 
 

@@ -402,11 +402,10 @@ extern QString workDir;
 
 QString Cloud::getValueFor(const QString &objectName, const QString &defaultValue)
 {
+//    qWarning()<<"getValue("<<objectName<<","<<defaultValue<<")";
     if (settings->value(objectName).isNull()) {
-//        qWarning()<<"getValue("<<objectName<<","<<defaultValue<<")";
         return defaultValue;
     }
-//    qWarning()<<"getValue("<<objectName<<","<<settings.value(objectName).toString()<<") in "<<workDir+"config.ini";
     return settings->value(objectName).toString();
 }
 

@@ -73,6 +73,8 @@ Rectangle {
      property alias xmlThumbModel: xmlThumbModel
 
     property string apiSelected: cloud.getValueFor("api","parse");
+    readonly property bool inPortrait: window.width < window.height
+
 
     visible: true
     width: 1024; height: 600

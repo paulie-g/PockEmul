@@ -1624,6 +1624,8 @@ void MainWindowPockemul::keyPressEvent		( QKeyEvent * event ){
 
 void MainWindowPockemul::toggleFullscreen()
 {
+
+    setAttribute(Qt::WA_Mapped) ;
     setWindowState(windowState() ^ Qt::WindowFullScreen);
     show();
 
@@ -1702,7 +1704,8 @@ void MainWindowPockemul::closeEvent(QCloseEvent *event)
 
     Cloud::saveValueFor("geometry",QString(saveGeometry().toHex()));
     qWarning()<<"geometry saved:"<<saveGeometry().toHex();
-
+    // if isFullScreen save status
+    Cloud::saveValueFor("fullscreen",this->isFullScreen() ? QString("true") : QString("false"));
     QMainWindow::closeEvent(event);
     event->accept();
 //    QApplication::quit();

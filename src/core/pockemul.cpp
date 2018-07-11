@@ -309,10 +309,19 @@ int main(int argc, char *argv[])
     mainwindow->showFullScreen();
     mainwindow->update();
 #else
-    mainwindow->restoreGeometry(QByteArray::fromHex(Cloud::getValueFor("geometry").toLatin1()));
-    mainwindow->show();
-#endif
 
+    mainwindow->restoreGeometry(QByteArray::fromHex(Cloud::getValueFor("geometry").toLatin1()));
+
+#ifdef Q_OS_WIN
+    QWindowsWindowFunctions::setHasBorderInFullScreen(mainwindow->windowHandle(), true);
+#endif
+    mainwindow->show();
+    if (Cloud::getValueFor("fullscreen") == QString("true")) {
+                mainwindow->toggleFullscreen();
+                mainwindow->toggleFullscreen();
+    }
+
+#endif
 
 //    test();
 
