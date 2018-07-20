@@ -14,6 +14,8 @@ Rectangle {
     property alias defaultText: inputElement.defaultText
     property alias echoMode: inputElement.echoMode
 
+    property int margin : 5
+
     signal buttonClicked
 
     width: delegate.ListView.view.width;
@@ -24,11 +26,13 @@ Rectangle {
     border.color: "lightgrey"
     border.width: 1
 
+
     LineInput {
         id: inputElement
         objectName: name
         width: parent.width
         anchors.verticalCenter: parent.verticalCenter
+        x: (margin )
         label: labelString
         font.pointSize: 16
         onInputAccepted: if (saveInput) cloud.saveValueFor(key,value)
@@ -43,6 +47,7 @@ Rectangle {
         width: parent.width
         height: labelElement.height +40
         anchors.verticalCenter: parent.verticalCenter
+        x:  margin
         color: "black"
         opacity: 1
         visible: (type == "text")
@@ -50,6 +55,7 @@ Rectangle {
 
     Row {
         anchors.verticalCenter: parent.verticalCenter
+        x: margin
         y:2
         spacing: 10
         Text {

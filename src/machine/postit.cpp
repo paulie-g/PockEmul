@@ -16,8 +16,7 @@ Cpostit::Cpostit(CPObject *parent )   : CPObject(parent)
 {
     Q_UNUSED(parent)
 
-//    setWindowFlags(Qt::SubWindow);
-//    setParent(parent);
+    setcfgfname(QString("postit"));
 
     setfrequency( 0);
     BackGroundFname     = P_RES(":/core/PostIt.png");
@@ -143,7 +142,7 @@ bool Cpostit::SaveSession_File(QXmlStreamWriter *xmlOut)
 {
     xmlOut->writeStartElement("session");
         xmlOut->writeAttribute("version", "2.0");
-        QByteArray ba(edit->toHtml().toUtf8());
+        QByteArray ba(text().toUtf8());
         xmlOut->writeTextElement("text",ba.toBase64());
     xmlOut->writeEndElement();  // session
     return true;
@@ -156,6 +155,7 @@ bool Cpostit::LoadSession_File(QXmlStreamReader *xmlIn)
             if (xmlIn->name() == "text" ) {
                 QByteArray ba = QByteArray::fromBase64(xmlIn->readElementText().toUtf8());
                 edit->setHtml(QString(ba.data()));
+                setText(QString(ba.data()));
             }
 //            xmlIn->skipCurrentElement();
         }

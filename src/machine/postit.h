@@ -83,6 +83,7 @@ public:
 
 class Cpostit:public CPObject {
     Q_OBJECT
+    Q_PROPERTY(QString text READ text WRITE setText)
 public:
     const char*	GetClassName(){ return("Cpostit");}
 
@@ -96,6 +97,8 @@ public:
     Cpostit(CPObject *parent = 0);
     virtual ~Cpostit();
 
+
+
 protected:
     void paintEvent(QPaintEvent *);
 protected slots:
@@ -107,6 +110,10 @@ private:
     CpostitTextEdit *edit;
     QVBoxLayout *HBL,*mainLayout;
     float sizeFactor;
+
+    QString m_text;
+    void setText(QString value){ m_text = value; }
+    QString text() const { return m_text; }
 
 };
 

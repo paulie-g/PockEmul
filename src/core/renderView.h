@@ -35,6 +35,7 @@ public:
     Q_INVOKABLE void test();
     Q_INVOKABLE QString getRes(QString _fn);
     Q_INVOKABLE void changeGeo(int,int,int,int);
+    Q_INVOKABLE void setPocketSize(QString ,int,int);
 
     Q_INVOKABLE void sendTrackingEvent(const QString &cat = QString(),
                                        const QString &action = QString(),
@@ -44,6 +45,7 @@ public:
     Q_INVOKABLE void loadSlot(QString Id, int slotNumber, BinaryData* display);
 
     Q_INVOKABLE bool getextFeatures();
+    Q_INVOKABLE QVariant getProperty(QString Id, QString name);
 
     void fillSlotList();
 public slots:
@@ -65,6 +67,7 @@ public slots:
     Q_INVOKABLE void setzoom(int x, int y, double z);
     Q_INVOKABLE void movepocket(QString Id, int x, int y);
     Q_INVOKABLE void moveallpocket(int x, int y);
+    Q_INVOKABLE void setProperty(QString Id,QString name, const QVariant &value);
     Q_INVOKABLE void maximize(QString Id);
     Q_INVOKABLE void minimize(QString Id);
     Q_INVOKABLE void fit();

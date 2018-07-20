@@ -40,9 +40,10 @@
 import QtQuick 2.3
 //import QtQuick.XmlListModel 2.0
 import QtQuick.Window 2.1
-import QtQuick.Controls 1.2
-//import Qt.labs.handlers 1.0
+//import QtQuick.Controls 1.2
+import QtQuick.Controls 2.2
 import "content"
+import "content/postit"
 import "TabbedQuickApp"
 import "."
 //import "http://www.parsecdn.com/js/parse-latest.js" as test
@@ -88,14 +89,17 @@ Rectangle {
     property string currentPocketId: ""
 
     property bool showContext: false
+    property bool activated : false
 
     focus: true
+
 
     Keys.onPressed: {
         console.log("key:",event.key);
         if ((event.key === Qt.Key_Menu) ||
             (event.key === Qt.Key_F1) ) {
-            nav.toggle();
+            messageDialog.open();
+            //nav.toggle();
             event.accepted = true;
         }
     }
@@ -118,6 +122,8 @@ Rectangle {
             console.log("popup:",contextMenu.selectedOption);
         }
     }
+
+
 
     Rectangle {
         id: scene
@@ -195,6 +201,7 @@ Rectangle {
                 color: "transparent"
 
                 property bool touchEnabled : true
+                property bool isPostIt:  String(_name).indexOf("Post-it")===0
 
                 border.width: 0
                 //            smooth: true
@@ -244,38 +251,21 @@ Rectangle {
                     id: image
                     anchors.fill: parent
                     fillMode: Image.Stretch
-                    source: "image://Pocket/"+idpocket+"/"+dummy
+                    source: isPostIt ? "" : "image://Pocket/"+idpocket+"/"+dummy
                     scale: 1
                     smooth: true
                     mipmap: true
                     antialiasing: true
+
+
                 }
-
-//                PinchArea {
-//                    property real previousScale: 1
-//                    enabled: false //!parent.touchEnabled
-//                    anchors.fill: parent
-//                    pinch.target: photoFrame
-//                    pinch.minimumRotation: -360
-//                    pinch.maximumRotation: 360
-//                    pinch.minimumScale: 0.1
-//                    pinch.maximumScale: 10
-////                    onPinchStarted: previousScale=1;
-////                    onPinchUpdated: {
-////                        console.warn("pinch local");
-////                        main.setzoom(pinch.startCenter.x,pinch.startCenter.y,pinch.scale);
-////                        previousScale=pinch.scale;
-////                    }
-////                    onRotationChanged:  photoFrame.rotation = pinch.rotation
-//                }
-
-
                 MultiPointTouchArea {
                     property bool isdrag: false;
                     property point previousPosition: Qt.point(1, 1);
                     property point previousScenePosition: Qt.point(1, 1);
 
                     id: pocketTouchArea
+
 
                     minimumTouchPoints: 1
                     maximumTouchPoints: 5
@@ -417,86 +407,30 @@ Rectangle {
 
 //                    onGestureStarted:  gesture.cancel();
 
+                }
+                // If name start with 'post-it' try to draw something specific
 
+                PostItEdit {
+                    anchors.fill: parent
+                    enabled: isPostIt
+                    visible: isPostIt
+
+                    textPostIt: (isPostIt && dummy>0) ? main.getProperty(idpocket,"text") : ""
+                    onTextPostItChanged: main.setProperty(idpocket,"text",textPostIt)
+                }
 
                 MouseArea {
                     property bool isdrag: false;
                     property point previousPosition: Qt.point(1, 1);
 
                     id: dragArea
-                    enabled: false;
+                    enabled:  false; //!parent.touchEnabled;
                     hoverEnabled: true;
                     preventStealing: false
                     acceptedButtons: Qt.LeftButton | Qt.RightButton
                     anchors.fill: parent
-                    propagateComposedEvents: true
+                    propagateComposedEvents: false
 
-                    //                        onPressed: {
-                    //                            //                        console.warn("clik");
-                    //                            previousPosition = Qt.point(mouse.x, mouse.y);
-                    //                            photoFrame.focus = true;
-                    //                            if (mouse.button === Qt.RightButton) {
-                    //                                if (!main.keyAt(idpocket,mouse.x,mouse.y)) {
-                    //                                    isdrag=false;
-                    //                                    sendContextMenu(idpocket,mouse.x,mouse.y);
-                    //                                }
-                    //                                else {
-                    //                                    isdrag=true;
-                    //                                }
-                    //                            }
-                    //                            if (mouse.button === Qt.LeftButton) {
-                    //                                if (!main.keyAt(idpocket,mouse.x,mouse.y)) {
-                    //                                    isdrag=true;
-                    //                                }
-
-                    //                                main.click(idpocket,0,mouse.x,mouse.y);
-                    //                            }
-                    //                            mouse.accepted=true;
-                    //                        }
-
-                    //                        onReleased: {
-                    //                            isdrag=false;
-                    ////                            sendUnClick(idpocket,mouseX,mouseY);
-                    //                            sendUnClick(idpocket,0,previousPosition.x,previousPosition.y);
-                    //                            mouse.accepted=true;
-
-                    //                        }
-
-                    onDoubleClicked: {
-                        isdrag = false;
-                        if (main.keyAt(idpocket,mouse.x,mouse.y)) {
-                            main.dblclick(idpocket,mouseX,mouseY);
-                        }
-                        else {
-//                            contextMenu.idpocket = idpocket;
-//                            contextMenu.width = 300*cloud.getValueFor("hiResRatio","1");//Math.max(300,image.width/2);
-//                            contextMenu.mousePt = Qt.point(mouse.x,mouse.y);
-//                            contextMenu.buttons = mouse.buttons;
-//                            contextMenu.popup(photoFrame.x+mouseX, photoFrame.y+mouseY);
-//                            showContextMenu(idpocket,mouse.x,mouse.y);
-                            console.log("popup:",contextMenu.selectedOption);
-                        }
-                    }
-
-                    //                        onPositionChanged: {
-                    //                            if (isdrag) {
-                    //                                var dx = mouse.x - previousPosition.x
-                    //                                var dy = mouse.y - previousPosition.y
-                    //                                sendMovePocket(idpocket,photoFrame.x+dx,photoFrame.y+dy);
-                    //                            }
-                    //                            else {
-                    //                                if (main.keyAt(idpocket,mouse.x,mouse.y)) {
-                    //                                    cursorShape = Qt.PointingHandCursor;
-                    //                                }
-                    //                                else {
-                    //                                    cursorShape = Qt.ArrowCursor;
-                    //                                }
-                    //                            }
-                    //                            mouse.accepted=true;
-
-                    //                        }
-                    //                    onEntered: photoFrame.border.color = "red";
-                    //                    onExited: photoFrame.border.color = "black";
                     onWheel: {
                         wheel.accepted = false;
                         if (wheel.modifiers & Qt.ControlModifier) {
@@ -507,7 +441,6 @@ Rectangle {
                         }
                     }
                 }
-                }
 
 
 
@@ -515,6 +448,36 @@ Rectangle {
 
         }
 
+        Image {
+            id: sceneToggle
+            anchors.top: parent.top
+//            anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            source: "content/images/pinch.png"
+            z: 9990 //parent.z
+
+            width: dp(48)
+            height: dp(48)
+
+
+
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    console.log("menuSquare: click",new Date());
+                    if (activated) {
+                        pinchAll(false);
+                    }
+                    else {
+                        pinchAll(true);
+                    }
+                    activated = !activated;
+                    sceneToggle.source =   activated ? "content/images/busy.png" :  "content/images/pinch.png"
+                }
+            }
+
+        }
 
         Rectangle {
             id: menuSquare
@@ -739,7 +702,7 @@ Rectangle {
                     expand: true
                     font.pointSize: 16
                     onClicked: {
-                        if (cloud.askDialog("Do you really want to cancel ?",2)==2) return;
+                        if (cloud.askDialog("Do you really want to cancel ?",2)===2) return;
                         hideWorkingScreen();
                     }
                 }
@@ -780,6 +743,24 @@ Rectangle {
 
     }
 
+    function pinchAll(enabled) {
+        console.log("pinchAll:",enabled);
+        // fecth all pocket
+        // disable keyboard if enable
+        for (var i=0; i<renderArea.xmlThumbModel.count;i++) {
+//            console.log("get:",id,renderArea.xmlThumbModel.get(i).idpocket);
+            if (enabled) {
+                main.disableKeyboard(renderArea.xmlThumbModel.get(i).idpocket);
+                repeater.itemAt(i).touchEnabled = false;
+            }
+            else {
+                main.enableKeyboard(renderArea.xmlThumbModel.get(i).idpocket);
+                repeater.itemAt(i).touchEnabled = true;
+            }
+        }
+
+    }
+
 
     Component.onCompleted: {
         thecloud.close.connect(cloudHide);
@@ -806,7 +787,7 @@ Rectangle {
 
     function addPocket(_name,_url,_pocketId,_left,_top,_width,_height,_rotation) {
         console.log("add pocket",_pocketId,_name);
-        renderArea.xmlThumbModel.append(   {name:_name,
+        renderArea.xmlThumbModel.append(   {_name:_name,
                                  imageFileName:_url,
                                  _left:_left,
                                  _top:_top,
@@ -835,7 +816,7 @@ Rectangle {
 //        memoryDump.slotListModel.append(
 //                    {
 //                        "idpocket":_pocketId,
-//                        "name":_name,
+//                        "_name":_name,
 //                        "sLabel":_sLabel,
 //                        "sSize":_sSize,
 //                        "sStart":_sStart,

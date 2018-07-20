@@ -93,5 +93,26 @@
         <file>content/Portal.qml</file>
         <file>content/SendRes.qml</file>
         <file>content/SwitchCustom.qml</file>
+        <file>content/postit/PostIt.qml</file>
+        <file>content/postit/PostItEdit.qml</file>
+        <file>content/postit/Resources/bin.png</file>
+        <file>content/postit/Resources/close.png</file>
+        <file>content/postit/Resources/loupe_moins.png</file>
+        <file>content/postit/Resources/loupe_plus.png</file>
+        <file>content/postit/Resources/plus.png</file>
+        <file>content/postit/Resources/postit_blue.png</file>
+        <file>content/postit/Resources/postit_blue_icon.png</file>
+        <file>content/postit/Resources/postit_green.png</file>
+        <file>content/postit/Resources/postit_green_icon.png</file>
+        <file>content/postit/Resources/postit_pink.png</file>
+        <file>content/postit/Resources/postit_pink_icon.png</file>
+        <file>content/postit/Resources/postit_yekkow_icon.png</file>
+        <file>content/postit/Resources/postit_yellow.png</file>
+        <file>content/postit/Resources/postit_yellow_icon.png</file>
+        <file>content/postit/Resources/tack.png</file>
+        <file>content/postit/Resources/toBack.png</file>
+        <file>content/postit/Resources/toFront.png</file>
+        <file>content/postit/Resources/validate.png</file>
+        <file>content/postit/Resources/ZcPostIt.png</file>
     </qresource>
 </RCC>

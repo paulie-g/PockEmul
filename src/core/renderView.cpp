@@ -193,6 +193,25 @@ void CrenderView::moveallpocket(int x, int y)
     mainwindow->MoveAll(pts);
 }
 
+void CrenderView::setProperty(QString Id,QString name, const QVariant &value)
+{
+    qWarning()<<"setProperty:"<<Id;
+    CPObject *pc = ((CPObject*)Id.toULongLong());
+
+    pc->setProperty(name.toLatin1().data(),value);
+}
+
+QVariant CrenderView::getProperty(QString Id, QString name)
+{
+    qWarning()<<"getProperty:"<<Id;
+    CPObject *pc = ((CPObject*)Id.toULongLong());
+
+    QVariant _ret = pc->property(name.toLatin1().data());
+    qWarning()<<"ret:"<<name.toLatin1().data()<<"="<<_ret;
+
+    return _ret;
+}
+
 void CrenderView::maximize(QString Id)
 {
     qWarning()<<"maximize:"<<Id;
@@ -384,6 +403,16 @@ QString CrenderView::getRes(QString _fn)
 
     return _res;
 }
+void CrenderView::setPocketSize(QString Id, int w, int h)
+{
+    Q_UNUSED(w)
+    Q_UNUSED(h)
+
+    qWarning()<<"setGeo"<<Id<<w<<h;
+
+    CViewObject *pc = ((CViewObject*)Id.toULongLong());
+    pc->changeGeometrySize(pc->x(),pc->y(),w,h);
+}
 
 void CrenderView::changeGeo(int x, int y, int w, int h)
 {
@@ -451,6 +480,8 @@ bool CrenderView::getextFeatures()
 {
     return extFeatures;
 }
+
+
 
 QString CrenderView::getReleaseNotes(QString _fn)
 {

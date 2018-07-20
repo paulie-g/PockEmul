@@ -1694,7 +1694,47 @@ DISTFILES += \
     resources/pockemul/about.html \
     cloud/content/SwitchCustom.qml \
     cloud/content/SwitchCustom.qml \
-    cloud/content/SwitchCustom.qml
+    cloud/content/SwitchCustom.qml \
+    cloud/content/postit/PostIt.qml \
+    cloud/content/postit/PostItEdit.qml \
+    cloud/content/postit/Resources/bin.png \
+    cloud/content/postit/Resources/close.png \
+    cloud/content/postit/Resources/loupe_moins.png \
+    cloud/content/postit/Resources/loupe_plus.png \
+    cloud/content/postit/Resources/plus.png \
+    cloud/content/postit/Resources/postit_blue.png \
+    cloud/content/postit/Resources/postit_blue_icon.png \
+    cloud/content/postit/Resources/postit_green.png \
+    cloud/content/postit/Resources/postit_green_icon.png \
+    cloud/content/postit/Resources/postit_pink.png \
+    cloud/content/postit/Resources/postit_pink_icon.png \
+    cloud/content/postit/Resources/postit_yekkow_icon.png \
+    cloud/content/postit/Resources/postit_yellow.png \
+    cloud/content/postit/Resources/postit_yellow_icon.png \
+    cloud/content/postit/Resources/tack.png \
+    cloud/content/postit/Resources/toBack.png \
+    cloud/content/postit/Resources/toFront.png \
+    cloud/content/postit/Resources/validate.png \
+    cloud/content/postit/Resources/ZcPostIt.png \
+    cloud/content/postit/Resources/bin.png \
+    cloud/content/postit/Resources/close.png \
+    cloud/content/postit/Resources/loupe_moins.png \
+    cloud/content/postit/Resources/loupe_plus.png \
+    cloud/content/postit/Resources/plus.png \
+    cloud/content/postit/Resources/postit_blue.png \
+    cloud/content/postit/Resources/postit_blue_icon.png \
+    cloud/content/postit/Resources/postit_green.png \
+    cloud/content/postit/Resources/postit_green_icon.png \
+    cloud/content/postit/Resources/postit_pink.png \
+    cloud/content/postit/Resources/postit_pink_icon.png \
+    cloud/content/postit/Resources/postit_yekkow_icon.png \
+    cloud/content/postit/Resources/postit_yellow.png \
+    cloud/content/postit/Resources/postit_yellow_icon.png \
+    cloud/content/postit/Resources/tack.png \
+    cloud/content/postit/Resources/toBack.png \
+    cloud/content/postit/Resources/toFront.png \
+    cloud/content/postit/Resources/validate.png \
+    cloud/content/postit/Resources/ZcPostIt.png
 
 
 
