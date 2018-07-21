@@ -56,6 +56,8 @@ bool Cpostit::init(void)
     AddLog(LOG_MASTER,"PostIt initializing...");
     qWarning()<<"PostIt initializing...";
     CPObject::init();
+    m_fontSize = 18;
+    qWarning()<<"PostIt fontSize="<<this->property("fontSize");
     mainLayout = new QVBoxLayout();
     mainLayout->setContentsMargins(0,0,1,11);
 
@@ -142,8 +144,15 @@ bool Cpostit::SaveSession_File(QXmlStreamWriter *xmlOut)
 {
     xmlOut->writeStartElement("session");
         xmlOut->writeAttribute("version", "2.0");
+
         QByteArray ba(text().toUtf8());
-        xmlOut->writeTextElement("text",ba.toBase64());
+
+        xmlOut->writeStartElement("text");
+        xmlOut->writeAttribute("fontSize",QString("%1").arg(fontSize()));
+        xmlOut->writeCharacters(ba.toBase64());
+        xmlOut->writeEndElement();
+
+
     xmlOut->writeEndElement();  // session
     return true;
 }
@@ -153,9 +162,15 @@ bool Cpostit::LoadSession_File(QXmlStreamReader *xmlIn)
     if (xmlIn->name()=="session") {
         if (xmlIn->readNextStartElement()) {
             if (xmlIn->name() == "text" ) {
+                int _size = 18;
+                if (!xmlIn->attributes().value("fontSize").isEmpty()) {
+                    _size = xmlIn->attributes().value("fontSize").toLatin1().toInt();
+                }
+                setFontSize(_size);
                 QByteArray ba = QByteArray::fromBase64(xmlIn->readElementText().toUtf8());
                 edit->setHtml(QString(ba.data()));
                 setText(QString(ba.data()));
+                qWarning()<<"Post it text="<<text();
             }
 //            xmlIn->skipCurrentElement();
         }

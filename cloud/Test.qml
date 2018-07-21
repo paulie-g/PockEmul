@@ -281,6 +281,8 @@ Rectangle {
                             }
 
                     onPressed: {
+                        nav.hide();
+
                         photoFrame.focus = true;
 
                         console.log("onPressed",touchPoints.length,touchPoints[0].pressed,timer.count);
@@ -416,6 +418,7 @@ Rectangle {
                     visible: isPostIt
 
                     textPostIt: (isPostIt && dummy>0) ? main.getProperty(idpocket,"text") : ""
+                    textFontSize: (isPostIt && dummy>0) ? main.getProperty(idpocket,"fontSize") : ""
                     onTextPostItChanged: main.setProperty(idpocket,"text",textPostIt)
                 }
 

@@ -84,6 +84,7 @@ public:
 class Cpostit:public CPObject {
     Q_OBJECT
     Q_PROPERTY(QString text READ text WRITE setText)
+    Q_PROPERTY(int fontSize READ fontSize WRITE setFontSize)
 public:
     const char*	GetClassName(){ return("Cpostit");}
 
@@ -114,6 +115,10 @@ private:
     QString m_text;
     void setText(QString value){ m_text = value; }
     QString text() const { return m_text; }
+
+    int m_fontSize;
+    void setFontSize(int value){ m_fontSize = value; }
+    int fontSize() const { return m_fontSize; }
 
 };
 

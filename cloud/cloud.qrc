@@ -114,5 +114,7 @@
         <file>content/postit/Resources/toFront.png</file>
         <file>content/postit/Resources/validate.png</file>
         <file>content/postit/Resources/ZcPostIt.png</file>
+        <file>content/postit/Resources/icon-font-size-minus.png</file>
+        <file>content/postit/Resources/icon-font-size-plus.png</file>
     </qresource>
 </RCC>

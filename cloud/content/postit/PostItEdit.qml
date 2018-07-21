@@ -20,7 +20,8 @@
 */
 
 import QtQuick 2.5
-import QtQuick.Controls 1.3
+//import QtQuick.Controls 1.3
+import QtQuick.Controls 2.2
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Layouts 1.2
 
@@ -31,6 +32,7 @@ Item {
     property int postItZ : 0
     property string idItem : ""
     property alias textPostIt : textArea.text
+    property alias textFontSize: textArea.font.pixelSize
     property alias postItColor: postIt.postItColor
 
     function clear() {
@@ -89,8 +91,67 @@ Item {
 
         state           : "readonly"
 
+
+        Rectangle {
+            id: fontSizeMinus
+            width: 40
+            height: 40
+            anchors.top                 : parent.top
+            anchors.left                : parent.left
+            anchors.margins: 5
+            anchors.leftMargin          : 30
+
+            border.color: "black"
+            border.width: 3
+            color: "transparent"
+            Image
+            {
+                source                      : "Resources/icon-font-size-minus.png"
+                anchors.fill:parent
+                anchors.margins: 5
+            }
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    console.log("font minus: click",new Date());
+                    textArea.font.pixelSize-=5;
+                }
+            }
+
+        }
+        Rectangle {
+            id: fontSizePlus
+            width: 40
+            height: 40
+            anchors.top                 : parent.top
+            anchors.left                : fontSizeMinus.right
+            anchors.margins: 5
+
+            border.color: "black"
+            border.width: 3
+            color: "transparent"
+            Image
+            {
+                source                      : "Resources/icon-font-size-plus.png"
+                anchors.fill:parent
+                anchors.margins: 5
+            }
+
+            MouseArea {
+                anchors.fill: parent
+
+                onClicked: {
+                    console.log("font plus: click",new Date());
+                    textArea.font.pixelSize+=5;
+                }
+            }
+        }
+
         Image
         {
+            width: 50
+            height: 50
             source                      : "Resources/tack.png"
             anchors.top                 : parent.top
             anchors.horizontalCenter    : parent.horizontalCenter
@@ -109,21 +170,28 @@ Item {
             anchors.topMargin       : 40
             clip                    : true
 
-            TextArea
-            {
-                id                      : textArea
-                anchors.top             : parent.top
-                anchors.topMargin       : -2
-                anchors.bottom          : parent.bottom
-                anchors.bottomMargin    : -2
-                anchors.left            : parent.left
-                anchors.leftMargin      : -2
-                anchors.right           : parent.right
-                font.pixelSize          : 18
-                anchors.rightMargin     : -2
-                wrapMode                : TextEdit.WordWrap
-                backgroundVisible: false
+            Flickable {
+                id: flickable
+                anchors.fill: parent
 
+                TextArea.flickable: TextArea {
+                    id                      : textArea
+                    anchors.top             : parent.top
+                    anchors.topMargin       : -2
+                    anchors.bottom          : parent.bottom
+                    anchors.bottomMargin    : -2
+                    anchors.left            : parent.left
+                    anchors.leftMargin      : -2
+                    anchors.right           : parent.right
+                    font.pixelSize          : 18
+                    anchors.rightMargin     : -2
+                    wrapMode                : TextArea.Wrap
+
+                    onFontChanged: main.setProperty(idpocket,"fontSize",font.pixelSize)
+                }
+
+
+                ScrollBar.vertical: ScrollBar { }
             }
         }
 
