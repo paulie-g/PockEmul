@@ -246,6 +246,28 @@ bool Cce126::init(void)
 }
 
 
+bool Cce126::LoadConfig(QXmlStreamReader *xmlIn)
+{
+    Q_UNUSED(xmlIn)
+
+    Cprinter::LoadConfig(xmlIn);
+
+    if (!xmlIn->attributes().value("top").isEmpty()) {
+        settop(xmlIn->attributes().value("top").toString().toInt());
+    }
+
+    return true;
+}
+bool Cce126::SaveConfig(QXmlStreamWriter *xmlOut)
+{
+    Q_UNUSED(xmlOut)
+
+    Cprinter::SaveConfig(xmlOut);
+
+    xmlOut->writeAttribute("top",QString("%1").arg(top));
+
+    return true;
+}
 
 /*****************************************************/
 /* Exit PRINTER										 */

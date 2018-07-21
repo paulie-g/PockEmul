@@ -36,7 +36,8 @@ public:
 
     virtual void ComputeKey(KEYEVENT ke = KEY_PRESSED,int scancode=0,QMouseEvent *event=0);
 
-    //virtual void resizeEvent ( QResizeEvent * );
+    virtual bool	LoadConfig(QXmlStreamReader *);	// Load PC Configuration
+    virtual bool	SaveConfig(QXmlStreamWriter *);	// Save PC Configuration
 	
 	Cconnector	*pCONNECTOR;		qint64 pCONNECTOR_value;
 	Cconnector	*pTAPECONNECTOR;	qint64 pTAPECONNECTOR_value;

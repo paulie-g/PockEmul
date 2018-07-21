@@ -3,12 +3,14 @@
 #include <QFileDialog>
 #include <QPainter>
 #include <QDebug>
+#include <QBuffer>
 
 #include "cprinter.h"
 #include "paperwidget.h"
 #include "Log.h"
 
 //TODO  Lorsque pointeur positionne sur papier, afficher scroolbar verticale et gerer mousewheel
+//TODO remove LoadSession_File et SaveSession_File and use the CPObject ones
 Cprinter::Cprinter(CPObject *parent):CPObject(parent)
 {
 	PaperColor = QColor(255,255,255);
@@ -118,6 +120,7 @@ void Cprinter::moveEvent ( QMoveEvent * event ) {
 
 void Cprinter::setPaperPos(QRect pos)
 {
+    qWarning()<<"setPaperPos"<<pos;
     this->pos = pos;
 }
 
@@ -136,11 +139,12 @@ void Cprinter::raise()
 
 bool Cprinter::SaveSession_File(QXmlStreamWriter *xmlOut)
 {
+
+
     xmlOut->writeStartElement("session");
         xmlOut->writeAttribute("version", "2.0");
-        xmlOut->writeAttribute("posx",QString("%1").arg(pos.x()));
-        xmlOut->writeAttribute("posy",QString("%1").arg(pos.y()));
-        xmlOut->writeAttribute("buffer",QString(TextBuffer.toBase64()));
+
+        SaveConfig(xmlOut);
 
     xmlOut->writeEndElement();  // session
     return true;
@@ -149,10 +153,41 @@ bool Cprinter::SaveSession_File(QXmlStreamWriter *xmlOut)
 bool Cprinter::LoadSession_File(QXmlStreamReader *xmlIn)
 {
     if (xmlIn->name()=="session") {
-//        pos.setX( xmlIn->attributes().value("posx").toString().toInt());
-//        pos.setY( xmlIn->attributes().value("posy").toString().toInt());
-        TextBuffer.clear();
-        TextBuffer = QByteArray::fromBase64(xmlIn->attributes().value("posy").toString().toLatin1());
+        LoadConfig(xmlIn);
     }
+
+    return true;
+}
+
+bool Cprinter::LoadConfig(QXmlStreamReader *xmlIn)
+{
+    Q_UNUSED(xmlIn)
+
+    int _x = xmlIn->attributes().value("posx").toString().toInt();
+    int _y = xmlIn->attributes().value("posy").toString().toInt();
+    paperWidget->setOffset(QPoint(_x,_y));
+
+    TextBuffer.clear();
+    TextBuffer = QByteArray::fromBase64(xmlIn->attributes().value("buffer").toString().toLatin1());
+    if (!xmlIn->attributes().value("paper").isEmpty()) {
+        paperWidget->bufferImage->loadFromData(
+                    QByteArray::fromBase64(xmlIn->attributes().value("paper").toString().toLatin1()),"PNG");
+    }
+
+    return true;
+}
+bool Cprinter::SaveConfig(QXmlStreamWriter *xmlOut)
+{
+    Q_UNUSED(xmlOut)
+
+    QByteArray ba;
+    QBuffer buffer(&ba);
+    paperWidget->bufferImage->save(&buffer, "PNG");
+
+    xmlOut->writeAttribute("posx",QString("%1").arg(paperWidget->getOffset().x()));
+    xmlOut->writeAttribute("posy",QString("%1").arg(paperWidget->getOffset().y()));
+    xmlOut->writeAttribute("buffer",QString(TextBuffer.toBase64()));
+    xmlOut->writeAttribute("paper",QString(ba.toBase64()));
+
     return true;
 }
