@@ -1155,8 +1155,8 @@ void CPObject::mouseReleaseEvent(QMouseEvent *event)
                          msgBox->setText(nearList.at(r)->Desc + " linked to ["+ listpPObject.at(k)->getName()+"]"+listpPObject.at(k)->ConnList.at(c)->Desc);
                          msgBox->show();
 #else
-                        if (ask(mainwindow, "Do you want to link those two materials ?\n"+
-                                                  nearList.at(r)->Desc + "--> ["+ listpPObject.at(k)->getName()+"]"+listpPObject.at(k)->ConnList.at(c)->Desc,
+                        if (ask(mainwindow, "Do you want to link those two materials ?\n["+
+                                            getName() + "]" + nearList.at(r)->Desc + "--> ["+ listpPObject.at(k)->getName()+"]"+listpPObject.at(k)->ConnList.at(c)->Desc,
                                                   2) == 1)
 #endif
                         {
