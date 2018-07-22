@@ -1290,7 +1290,14 @@ QString MainWindowPockemul::saveassessionString() {
 
 QString MainWindowPockemul::saveassession()
 {
-
+    QDir dir;
+    dir.mkpath(workDir+"/sessions/");
+    dir.setPath(workDir+"/sessions/");
+    QString fn = QFileDialog::getSaveFileName(
+                mainwindow,
+                tr("Choose a filename to save session"),
+                dir.path(),
+                tr("Session File (*.pml)"));
 
     // Take a snapshot
 
@@ -1300,14 +1307,7 @@ QString MainWindowPockemul::saveassession()
     saveassession(xml);
     //MSG_ERROR(s)
 
-    QDir dir;
-    dir.mkpath(workDir+"/sessions/");
-    dir.setPath(workDir+"/sessions/");
-    QString fn = QFileDialog::getSaveFileName(
-                mainwindow,
-                tr("Choose a filename to save session"),
-                dir.path(),
-                tr("Session File (*.pml)"));
+
 
 
     if (!fn.isEmpty()) {
