@@ -33,7 +33,7 @@ Cg850v::Cg850v(CPObject *parent)	: CpcXXXX(parent)
     SessionHeader	= "G850PKM";
     Initial_Session_Fname ="g850.pkm";
     BackGroundFname	= P_RES(":/G850V/g850v.png");
-    backLightRect = QRect(87,111,691,203);
+    backLightRect = QRect(45,56,343,101);
 
     LeftFname = P_RES(":/G850V/g850vLeft.png");
 
