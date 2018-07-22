@@ -14,7 +14,7 @@ Rectangle {
     property alias defaultText: inputElement.defaultText
     property alias echoMode: inputElement.echoMode
 
-    property int margin : 5
+    property int margin : 10
 
     signal buttonClicked
 
@@ -47,7 +47,7 @@ Rectangle {
         width: parent.width
         height: labelElement.height +40
         anchors.verticalCenter: parent.verticalCenter
-        x:  margin
+        x:  0
         color: "black"
         opacity: 1
         visible: (type == "text")
@@ -84,8 +84,10 @@ Rectangle {
        SwitchCustom {
            objectName: name
            anchors.right: parent.right
+           anchors.rightMargin: 20
            anchors.verticalCenter: parent.verticalCenter
-           bheight: buttonElement.height*.9
+
+           bheight: buttonElement.height*.5
            bwidth: bheight * 2
            on: (labelString=="checked") ? true:false
            onToggleState: if (saveInput) cloud.saveValueFor(key,value)
