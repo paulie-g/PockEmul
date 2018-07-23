@@ -340,7 +340,7 @@ void Chp41::ComputeKey(KEYEVENT ke, int scancode, QMouseEvent *event)
     }
     if (_response==2) return;
 
-    if (slot>=0) {
+    if (_slot>=0) {
         currentSlot = _slot;
 #if 1
         connect(view,SIGNAL(Launched(QString,CPObject *)),this,SLOT(addModule(QString,CPObject *)));
