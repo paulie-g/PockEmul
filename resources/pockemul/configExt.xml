@@ -37,15 +37,15 @@
      <example brand="OTHER" idpocket="Potar" filename="./" name="Potar" image=":/ext/jack.png" connectortype="Optical" conngender="male"/>
      <example brand="OTHER" idpocket="Simulator" filename="./" name="Simulator" image=":/ext/simu.png" connectortype="Sharp_11" conngender="male"/>
      <example brand="OTHER" idpocket="11Pins Cable" filename="./" name="Sharp EA-129C" image=":/ext/cable.png" connectortype="Sharp_11" conngender="male"/>
-     <example brand="CASIO" idpocket="Casio MD-100" filename="./" name="Casio MD-100" image=":/ext/md-100.png" connectortype="Casio_30" conngender="female"/>
-     <example brand="CASIO" idpocket="Casio FA-80" filename="./" name="Casio FA-80" image=":/fx8000g/fa80.png" connectortype="Casio_30" conngender="female"/>
-     <example brand="CASIO" idpocket="Casio FP-100" filename="./" name="Casio FP-100" image=":/ext/fp100.png" connectortype="Centronics_36" conngender="female"/>
-     <example brand="CASIO" idpocket="Casio FP-40" filename="./" name="Casio FP-40" image=":/ext/fp40.png" connectortype="Centronics_36" conngender="female"/>
+     <example brand="CASIO" idpocket="Casio MD-100" filename="./" name="Casio MD-100" image=":/md100/md-100.png" connectortype="Casio_30" conngender="female"/>
+     <example brand="CASIO" idpocket="Casio FA-80" filename="./" name="Casio FA-80" image=":/fa80/fa80.png" connectortype="Casio_30" conngender="female"/>
+     <example brand="CASIO" idpocket="Casio FP-100" filename="./" name="Casio FP-100" image=":/fp100/fp100.png" connectortype="Centronics_36" conngender="female"/>
+     <example brand="CASIO" idpocket="Casio FP-40" filename="./" name="Casio FP-40" image=":/fp40/fp40.png" connectortype="Centronics_36" conngender="female"/>
      <example brand="OTHER" idpocket="Nec PC-2021" filename="./" name="Nec PC-2021" image=":/ext/pc-2021.png" connectortype="Din_8" conngender="male"/>
      <example brand="OTHER" idpocket="Nec PC-2081" filename="./" name="Nec PC-2081" image=":/ext/pc-2081.png" connectortype="Jack_3" conngender="female"/>
-     <example brand="OTHER" idpocket="General CL-1000" filename="./" name="General CL-1000" image=":/ext/cl-1000.png" connectortype="General_20" conngender="male"/>
+     <example brand="OTHER" idpocket="General CL-1000" filename="./" name="General CL-1000" image=":/cl1000/cl-1000.png" connectortype="General_20" conngender="male"/>
      <example brand="OTHER" idpocket="SANCO TP-83" filename="./" name="SANCO TP-83" image=":/ext/tp-83.png" connectortype="Sharp_9" conngender="female"/>
-     <example brand="OTHER" idpocket="Epson H20RC" filename="./" name="Epson H20RC" image=":/hx20/h20rc.png" connectortype="Epson CN8" conngender="female"/>
+     <example brand="OTHER" idpocket="Epson H20RC" filename="./" name="Epson H20RC" image=":/h20rc/h20rc.png" connectortype="Epson CN8" conngender="female"/>
      <example brand="PANASONIC" idpocket="Panasonic RL-P3001 RS-232C" filename="./" name="Panasonic RL-P3001 RS-232C (Not working)" image=":/rlh1000/rlp3001.png" connectortype="Panasonic_44" conngender="female;male"/>
      <example brand="PANASONIC" idpocket="Panasonic RL-P4002 Modem" filename="./" name="Panasonic RL-P4002 Modem (Not working)" image=":/rlh1000/rlp4002.png" connectortype="Panasonic_44" conngender="female;male"/>
      <example brand="PANASONIC" idpocket="Panasonic RL-P6001" filename="./" name="Panasonic RL-P6001" image=":/rlh1000/rlp6001.png" connectortype="Panasonic_44" conngender="female;male"/>
