@@ -141,6 +141,7 @@ private slots:
     void updateFrameTimer();
     void updateTimeTimer();
     void resizeSlot(QSize size , CPObject *pObject);
+    void powerSlot(CPObject *pObject);
 
     void slotNewLink(QAction *);
     void slotWebLink(QAction *);

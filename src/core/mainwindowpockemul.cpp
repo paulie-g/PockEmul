@@ -1666,6 +1666,11 @@ void MainWindowPockemul::resizeSlot( QSize size , CPObject *pObject)
     pObject->paintingImage.unlock();
 }
 
+void MainWindowPockemul::powerSlot(CPObject *pObject)
+{
+    pObject->slotPower();
+}
+
 void MainWindowPockemul::DestroySlot( CPObject *pObject)
 {
     qWarning()<< "DestroySlot:"<<pObject->getcfgfname();

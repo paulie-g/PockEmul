@@ -503,6 +503,7 @@ bool CPObject::run(void){
         qWarning()<<"K_OF";
         Vibrate();
         slotPower();
+
         pKEYB->removeKey(K_OF);
     }
     if (off && (KEY(K_BRK) || KEY(K_POW_ON))) {
