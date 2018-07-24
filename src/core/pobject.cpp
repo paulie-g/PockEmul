@@ -138,6 +138,7 @@ CPObject::CPObject(CPObject *parent, QString _cfg):CViewObject(parent)
     connect( this,SIGNAL(msgError(QString)),mainwindow,SLOT(slotMsgError(QString)));
     connect( this,SIGNAL(sigTurnOff()),this,SLOT(slotTurnOff()));
     connect( this,SIGNAL(sigTurnOn()),this,SLOT(slotTurnOn()));
+    connect( this,SIGNAL(sigPower()),this,SLOT(slotPower()));
     setStyleSheet("background-color:white;color: black;selection-background-color: grey;");
 
 }
@@ -502,7 +503,7 @@ bool CPObject::run(void){
     if (KEY(K_OF)) {
         qWarning()<<"K_OF";
         Vibrate();
-        slotPower();
+        emit sigPower();
 
         pKEYB->removeKey(K_OF);
     }

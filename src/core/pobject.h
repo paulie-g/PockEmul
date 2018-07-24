@@ -269,6 +269,7 @@ signals:
     void ObjLinkedTo(Cconnector *, Cconnector *);
     void sigTurnOff();
     void sigTurnOn();
+    void sigPower();
     void PowerChanged(CPObject*);
 
 public slots:
