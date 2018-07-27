@@ -18,7 +18,11 @@ Rectangle {
 
     signal buttonClicked
 
-    width: delegate.ListView.view.width;
+     Component.onCompleted: {
+//         console.log("settingsDelegate",name,delegate.ListView,delegate.ListView.view);
+     }
+
+    width: parent ? parent.width : 0; //delegate.ListView.view.width;
     height: cloud.getValueFor("hiResRatio","1") *
             (type == "input") ? inputElement.height + 40:
             (type == "action")? buttonElement.height +40 : labelElement.height +40

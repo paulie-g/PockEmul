@@ -51,7 +51,6 @@ Rectangle {
                 parse.passwordReset(emailFld.inputText);
             }
         }
-//        SettingsDelegate { id: syncEnabled; name: "syncEnabled"; labelString: "Enable file synchronization"; type: "checkbox"; defaultText: "on"}
 
         SettingsDelegate { id: labelAppSettings;name: "labelAppSettings";   labelString: "Application Settings"; type: "text"; saveInput: false }
         SettingsDelegate { id: extFeatures;     name: "extFeatures";        labelString: "Extended features"; type: "checkbox"; defaultText: "off";

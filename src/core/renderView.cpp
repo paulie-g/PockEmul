@@ -41,6 +41,13 @@ CrenderView::CrenderView(QWidget *parent):cloud(this)
 
     this->setAttribute(Qt::WA_AcceptTouchEvents);
 
+    QPalette pal = palette();
+
+    // set black background
+    pal.setColor(QPalette::Background, Qt::black);
+    this->setAutoFillBackground(true);
+    this->setPalette(pal);
+
 //    grabKeyboard();
     setFocusPolicy(Qt::ClickFocus);
 

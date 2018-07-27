@@ -184,6 +184,7 @@ int main(int argc, char *argv[])
 
     QApplication *app = new QApplication(argc, argv);
 
+    qWarning()<<"start"<<QTime::currentTime();
 #ifdef Q_OS_WIN
     app->installNativeEventFilter(new MyMSGEventFilter());
 #endif
@@ -305,20 +306,7 @@ int main(int argc, char *argv[])
 
     mainwindow->openGlFlag=true;
 
-#ifdef Q_OS_ANDROID
-    mainwindow->showFullScreen();
-    mainwindow->update();
-#else
-
-    mainwindow->setAttribute(Qt::WA_Mapped) ;
-    mainwindow->show();
-#ifdef Q_OS_WIN
-    QWindowsWindowFunctions::setHasBorderInFullScreen(mainwindow->windowHandle(), true);
-#endif
-
-    mainwindow->restoreGeometry(QByteArray::fromHex(Cloud::getValueFor("geometry").toLatin1()));
-
-#endif
+// old show
 
 //    test();
 
@@ -393,6 +381,21 @@ int main(int argc, char *argv[])
         Q_UNUSED(pPC)
   #endif
     }
+
+#ifdef Q_OS_ANDROID
+    mainwindow->showFullScreen();
+    mainwindow->update();
+#else
+
+    mainwindow->setAttribute(Qt::WA_Mapped) ;
+    mainwindow->show();
+#ifdef Q_OS_WIN
+    QWindowsWindowFunctions::setHasBorderInFullScreen(mainwindow->windowHandle(), true);
+#endif
+
+    mainwindow->restoreGeometry(QByteArray::fromHex(Cloud::getValueFor("geometry").toLatin1()));
+
+#endif
 
     splash.close();
 

@@ -108,6 +108,7 @@ MainWindowPockemul::MainWindowPockemul(QWidget * parent, Qt::WindowFlags f) : QM
     setMouseTracking(true);
     setFocusPolicy(Qt::StrongFocus);
     setStatusBar(0);
+
     dialoglog = 0;
     dialoganalogic = 0;
     cloud = 0;
