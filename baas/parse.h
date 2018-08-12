@@ -92,7 +92,8 @@ signals:
     void sessionIdChanged();
     void userIdChanged();
     void masterKeyChanged();
-    void loginChanged();
+    void loginChanged(QJsonObject obj);
+    void loginFailed(QJsonObject obj);
     void pmlListChanged(QString xml);
     void masterModeChanged();
     void objectDeleted( QString deletedObjectId );

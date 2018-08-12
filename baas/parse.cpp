@@ -105,7 +105,11 @@ void Parse::signup( QString username, QString password, QString email )
             qDebug() << "objectId" << obj.value("objectId").toString();
             qDebug() << "sessionToken" << sessionId;
             qDebug() << "res" << obj;
-            emit loginChanged();
+            emit loginChanged(obj);
+            ask(mainwindow,"Cloud signup succeded",1);
+        }
+        else { //ERROR
+            ask(mainwindow,"Cloud signup failed",1);
         }
 
     } );
@@ -154,7 +158,13 @@ void Parse::login( QString username, QString password )
             qWarning() << "objectId" << obj.value("objectId").toString();
             qWarning() << "sessionToken" << sessionId;
             setRawHeader("X-Parse-Session-Token", sessionId.toUtf8());
-            emit loginChanged();
+            emit loginChanged(obj);
+            ask(mainwindow,"Cloud login succeded",1);
+        }
+        else { //ERROR
+            QJsonObject obj = json.object();
+            emit loginFailed(obj);
+            ask(mainwindow,"Cloud login failed",1);
         }
 
     } );
@@ -179,7 +189,7 @@ void Parse::logout( )
             userName = "";
 
             removeRawHeader("X-Parse-Session-Token");
-            emit loginChanged();
+            emit loginChanged(json.object());
         }
 
     } );

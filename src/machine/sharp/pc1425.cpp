@@ -39,6 +39,7 @@ Cpc1425::Cpc1425(CPObject *parent) : Cpc1403(parent)
     LeftFname  = P_RES(":/pc1350/pc1350Left.png");
     TopFname   = P_RES(":/pc1350/pc1350Top.png");
     BottomFname= P_RES(":/pc1350/pc1350Bottom.png");
+    BackFname   = P_RES(":/pc1350/pc1350Back.png");
 
     SlotList.clear();
     SlotList.append(CSlot(8 , 0x0000 ,	P_RES(":/pc1425/cpu-1425.bin")	, "" , CSlot::ROM , "CPU ROM"));
