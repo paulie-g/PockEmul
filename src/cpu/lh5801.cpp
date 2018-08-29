@@ -741,7 +741,7 @@ INLINE void CLH5801::instruction_fd(void)
 	case 0x69:	AND_MEM(ME1(U), cpu_readop(P++)); 				AddState(17);	break;
 	case 0x6a:	U=X;											AddState(11);	break;
 	case 0x6b:	ORA_MEM(ME1(U), cpu_readop(P++)); 				AddState(17);	break;
-	case 0x6d:	BIT(cpu_readmem(ME1(X)), cpu_readop(P++));		AddState(14);/**/	break;
+	case 0x6d:	BIT(cpu_readmem(ME1(U)), cpu_readop(P++));		AddState(14);/**/	break;
 	case 0x6f:	ADD_MEM(ME1(U), cpu_readop(P++)); 				AddState(17);	break;
 	case 0x81:	SET_IE; /*sie !*/								AddState(8);/**/	break;
 	case 0x88:	PUSH_WORD(X);									AddState(14);	break;
