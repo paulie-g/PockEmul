@@ -21,7 +21,7 @@ It is develop in C++ using Qt4 or Qt5.
 
 It is available on Win32, Linux, Mac OS X and Android
 
-http://pockemul.free.fr
+[pockemul.free.fr - Author's original site @ Apr 17, 2017 aounrd the time of last open source commit](https://web.archive.org/web/20170517120505/http://pockemul.free.fr/)
 
 Main computer emulated:
  * Sharp pc-1245
