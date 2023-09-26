@@ -4,6 +4,7 @@ include(QZXing/QZXing.pri)
 TEMPLATE = app
 
 QMAKE_CXXFLAGS += -fsigned-char -fexceptions
+QMAKE_CXXFLAGS += -std=c++11
 
 #DEFINES += GL
 
