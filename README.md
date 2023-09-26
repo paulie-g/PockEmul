@@ -1,3 +1,16 @@
+Update
+======
+
+The original author (matsumo/PockEmul) has chosen to discontinue development in favour of a paid, proprietary version with a monthly subscription model.
+I make no moral judgments with respect to this decision and thank him for all his work on the GPL2-licensed version up until that point.
+Unfortunately, his last GPL2-licensed master no longer builds on modern Linux systems (latest QT5, gcc13 etc).
+I have pulled the changes from the most active fork (cbonello/PockEmul - evidently mostly Android fixes) and fixed the build.
+This repo's master now succesfully builds the Linux desktop version on latest QT5 (~5.15) with gcc13.
+
+To build, clone this repo, then do ```qmake pockemul.pro; make```
+
+Building other targets (Windows, Android) has not been tested. Open an issue if you try it, pull requests welcome.
+
 PockEmul
 ========
 PockEmul is a Multi-Pocket Computer emulator.
